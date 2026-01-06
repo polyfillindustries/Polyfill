@@ -1,0 +1,41 @@
+export const NAV_LINKS = [
+  { name: 'Home', href: '/' },
+  { name: 'Products', href: '/products' },
+  { name: 'About Us', href: '/about-us' },
+  { name: 'Gallery', href: '/gallery' },
+  { name: 'Contact Us', href: '/contact-us' },
+];
+
+export const CONTACT_INFO = {
+  phone: '+91 8048773212',
+  email: 'polyfillindustries@gmail.com',
+  address: 'C-57, Sector-4, Dsidc Bawana Ind. Area, Bawana, Delhi - 110039, India',
+  addressLink: '#',
+};
+
+export const COMPANY_INFO = {
+  name: 'Polyfill Industries',
+  description: 'Leading manufacturer of high-quality polymer products for modern applications.',
+  tagline: 'Innovative Polymer Solutions',
+};
+
+export const FOOTER_LINKS = {
+  company: [
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
+    { name: 'Terms & Conditions', href: '/terms-and-conditions' },
+    { name: 'Contact Form', href: '/contact-us' },
+  ],
+  products: [
+    { name: 'Products', href: '/products' },
+    { name: 'Gallery', href: '/gallery' },
+    { name: 'Site Map', href: '/sitemap' },
+  ],
+};
+
+export const SOCIAL_LINKS = [
+  { name: 'Facebook', href: '#', icon: 'facebook' },
+  { name: 'Twitter', href: '#', icon: 'twitter' },
+  { name: 'LinkedIn', href: '#', icon: 'linkedin' },
+  { name: 'Instagram', href: '#', icon: 'instagram' },
+];
