@@ -1,10 +1,22 @@
+import AnimatedHeading from "@/components/AnimatedHeadings";
+import { CompanyBrief } from "@/components/CompanyBrief";
+import Counter from "@/components/Counter";
+import HeroSlideshow from "@/components/Hero";
+import { TimelineDemo } from "@/components/Timeline";
+import { Tools } from "@/components/Tools";
+
+
+
 export default function Home() {
   return (
    <>
-   
-   <div className="p-8 space-y-4">
-     <h1 className="text-4xl font-inter font-bold">HOME page</h1>
-     <p className=" font-medium font-inter"> this is home page</p>
+   <HeroSlideshow/>
+   <div className="p-8 space-y-15">
+    <CompanyBrief/>
+     <TimelineDemo/>
+     <Counter/>
+
+    <Tools/> 
    </div>
   
    </>

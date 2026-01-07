@@ -30,7 +30,7 @@ export const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="bg-zinc-50 border-b-2 border-bprimary">
+    <nav className="sticky top-0 z-50 bg-zinc-50 border-b-2 border-bprimary shadow-sm">
 
       {/* Top Bar - Hidden on mobile */}
       <div className="hidden md:block bg-black text-white">
