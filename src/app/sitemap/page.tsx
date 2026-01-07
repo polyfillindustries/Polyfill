@@ -114,7 +114,7 @@ export default function SitemapPage() {
             Individual product pages can be accessed through the{' '}
             <Link href="/products" className="font-medium text-bprimary hover:underline">
               Products
-            </Link>{' '}
+            </Link>
             section
           </p>
         </div>
