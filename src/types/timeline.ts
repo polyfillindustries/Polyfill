@@ -1,4 +1,6 @@
-export interface TimelineEntry {
+export interface TimelineItem {
+  year: string;
   title: string;
-  content: React.ReactNode;
+  description: string;
+  image?: string;
 }

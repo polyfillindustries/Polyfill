@@ -41,6 +41,17 @@ const slides: Slide[] = [
 export default function HeroSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const paginate = useCallback(
     (newDirection: number) => {
@@ -81,6 +92,9 @@ export default function HeroSlideshow() {
           className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
             index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
+          style={{
+            transform: `translateY(${scrollY * 0.5}px)`,
+          }}
         >
           <Image
             src={slide.image}
