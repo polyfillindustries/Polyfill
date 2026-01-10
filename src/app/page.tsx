@@ -1,43 +1,41 @@
 
-import { CompanyBrief } from "@/components/CompanyBrief";
 import Counter from "@/components/Counter";
 import HeroSlideshow from "@/components/Hero";
 import Overview from "@/components/Overview";
 import { PolymerCards } from "@/components/PolymerCards";
-import Timeline from "@/components/Timeline";
-import { Tools } from "@/components/Tools";
-import ToolsAndTech from "@/components/tt";
+import { TimelineDemo } from "@/components/Timeline";
+import ToolsAndTech from "@/components/Tools";
+
 
 export default function Home() {
   return (
-    <>
-    <div className="bg-black">
+    < div className="bg-white">
+    <div className="">
      <HeroSlideshow />
     </div>
      
-      <div className="p-8 bg-white space-y-15">
-        {/* <CompanyBrief /> */}
+      <div className="p-1  space-y-15">
         <Overview/>
         
        
       </div>
      
-       {/* <DiagonalCard/> */}
+
       <PolymerCards/>
        
 
-      <div className="p-8 bg-black space-y-10">
-        <Timeline />
+      <div className="  space-y-10">
+      <TimelineDemo/>
       </div>
 
-      <div className="py-8  space-y-15">
+      <div className=" space-y-15">
         <Counter />
       </div>
 
-      <div className="  space-y-15">
+      <div className=" px-2 rounded-2xl space-y-15">
         {/* <Tools /> */}
         <ToolsAndTech/>
       </div>
-    </>
+    </div>
   );
 }
