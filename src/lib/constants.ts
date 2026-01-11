@@ -39,3 +39,22 @@ export const SOCIAL_LINKS = [
   { name: 'LinkedIn', href: '#', icon: 'linkedin' },
   { name: 'Instagram', href: '#', icon: 'instagram' },
 ];
+
+/**
+ * Form validation constants
+ */
+export const FORM_VALIDATION = {
+  MESSAGE_MIN_LENGTH: 10,
+  PHONE_PATTERN: /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}$/,
+  EMAIL_PATTERN: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+} as const;
+
+/**
+ * API response messages
+ */
+export const API_MESSAGES = {
+  CONTACT_SUCCESS: "Thank you for contacting us! We'll get back to you soon.",
+  CONTACT_ERROR: "Something went wrong. Please try again.",
+  FORM_VALIDATION_ERROR: "Please check the form for errors.",
+} as const;
+

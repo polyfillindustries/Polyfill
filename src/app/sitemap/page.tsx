@@ -48,48 +48,51 @@ const sitePages = [
 
 export default function SitemapPage() {
   return (
-    <div className="min-h-screen bg-linear-to-br from-cloud via-white to-blue-50">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-bgray sm:text-5xl">
+        <div className="mb-16 text-center">
+          <h1 className="mb-4 text-4xl md:text-5xl font-bold font-playfair tracking-tight text-bgray sm:text-6xl">
             Site Navigation
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto max-w-2xl text-lg text-gray-600">
             Explore all pages and sections of our website
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl mx-auto">
           {sitePages.map((page) => {
             const Icon = page.icon
             return (
               <Link
                 key={page.href}
                 href={page.href}
-                className="group relative overflow-hidden rounded-xl border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-bprimary"
+                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-bprimary/50"
               >
                 <div className="flex flex-col items-start gap-4">
-                  {/* Icon */}
-                  <div className="rounded-lg bg-linear-to-br from-bprimary to-bsecondary p-3 text-white transition-transform duration-300 group-hover:scale-110">
-                    <Icon className="h-6 w-6" />
+                  {/* Icon with gradient */}
+                  <div className="rounded-xl bg-linear-to-br from-bprimary via-bsecondary to-baccent p-4 text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-lg">
+                    <Icon className="h-7 w-7" />
                   </div>
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="mb-2 text-xl font-semibold text-bgray group-hover:text-bprimary transition-colors">
+                    <h3 className="mb-3 text-xl font-semibold font-inter text-bgray group-hover:text-bprimary transition-colors">
                       {page.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-sm text-gray-600 leading-relaxed">
                       {page.description}
                     </p>
                   </div>
 
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-linear-to-br from-bprimary/5 to-bsecondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+
                   {/* Arrow indicator */}
-                  <div className="absolute right-4 top-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute right-6 top-6 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">
                     <svg
-                      className="h-5 w-5 text-bprimary"
+                      className="h-6 w-6 text-bprimary"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -97,7 +100,7 @@ export default function SitemapPage() {
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        strokeWidth={2}
+                        strokeWidth={2.5}
                         d="M9 5l7 7-7 7"
                       />
                     </svg>
@@ -108,15 +111,17 @@ export default function SitemapPage() {
           })}
         </div>
 
-        {/* Footer note */}
-        <div className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground">
-            Individual product pages can be accessed through the{' '}
-            <Link href="/products" className="font-medium text-bprimary hover:underline">
-              Products
-            </Link>
-            section
-          </p>
+        {/* Footer note with styling matching home page */}
+        <div className="mt-16 text-center">
+          <div className="inline-block px-6 py-3 bg-gradient-to-r from-bprimary/10 to-bsecondary/10 rounded-full">
+            <p className="text-sm text-gray-700">
+              Individual product pages can be accessed through the{' '}
+              <Link href="/products" className="font-semibold text-bprimary hover:text-bsecondary transition-colors hover:underline">
+                Products
+              </Link>{' '}
+              section
+            </p>
+          </div>
         </div>
       </div>
     </div>
