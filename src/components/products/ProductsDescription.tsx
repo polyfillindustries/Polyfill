@@ -5,11 +5,10 @@ import { motion } from 'framer-motion';
 import { 
   Factory, 
   Settings2, 
-  Layers, 
-  MessageSquare,
-  ArrowRight
+  Layers
 } from 'lucide-react';
 import { ProductsDescriptionProps } from '@/types/productdescription';
+import { ProductEnquirySheet } from './ProductEnquirySheet';
 
 
 export const ProductsDescription = ({ product }: ProductsDescriptionProps) => {
@@ -110,14 +109,7 @@ export const ProductsDescription = ({ product }: ProductsDescriptionProps) => {
       {/* 6. High-Conversion CTA */}
       <div className="relative group">
         <div className="absolute -inset-1 bg-linear-to-r from-bprimary to-bsecondary rounded-2xl blur-sm opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
-        <a
-          href="/contact-us"
-          className="relative flex items-center justify-center gap-3 w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-5 px-8 rounded-2xl transition-all shadow-xl active:scale-[0.98]"
-        >
-          <MessageSquare className="w-5 h-5" />
-          <span>Inquire about {product.name}</span>
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </a>
+        <ProductEnquirySheet productName={product.name} />
       </div>
     </div>
   );
