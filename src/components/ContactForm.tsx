@@ -154,7 +154,7 @@ export default function ContactForm() {
               <Input
                 id="name"
                 type="text"
-                placeholder="John Doe"
+                placeholder="Enter your full name"
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 aria-invalid={!!errors.name}
@@ -175,7 +175,7 @@ export default function ContactForm() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="abc@example.com"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   aria-invalid={!!errors.email}

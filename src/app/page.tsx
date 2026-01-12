@@ -1,9 +1,9 @@
 
-import Counter from "@/components/Counter";
+import Counter from "@/components/home/Counter";
 import HeroSlideshow from "@/components/Hero";
 import Overview from "@/components/Overview";
 import { PolymerCards } from "@/components/PolymerCards";
-import { TimelineDemo } from "@/components/Timeline";
+import { TimelineDemo } from "@/components/home/Timeline";
 import ToolsAndTech from "@/components/Tools";
 
 

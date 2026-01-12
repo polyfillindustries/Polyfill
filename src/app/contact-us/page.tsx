@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import Script from "next/script";
+import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
   title: "Contact Us - Get Expert Polymer Solutions | Polyfill Industries",
@@ -21,6 +22,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactUsPage() {
+  const words = [
+    { text: "Contact" },
+    { text: "Us", className: "text-bprimary" },
+  ];
   return (
     <>
       {/* Load reCAPTCHA v3 Script */}
@@ -33,9 +38,12 @@ export default function ContactUsPage() {
         <div className="max-w-7xl mx-auto">
           {/* Page Title */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-playfair font-bold text-bgray mb-4">
+            <div className="flex justify-center">
+              <TypewriterEffectSmooth words={words} />
+            </div>
+            {/* <h1 className="text-4xl md:text-5xl font-playfair font-bold text-bgray mb-4">
               Contact Us
-            </h1>
+            </h1> */}
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Have questions about our polymer solutions? We're here to help.
             </p>
@@ -46,7 +54,7 @@ export default function ContactUsPage() {
             {/* Left Side - Image with Overlay Text */}
             <div className="relative w-full h-full min-h-75 md:min-h-125">
               <Image
-                src="/hero/1.jpg"
+                src="/hero/img1.jpg"
                 alt="Contact Polyfill Industries"
                 fill
                 className="object-cover rounded-lg"
@@ -61,8 +69,8 @@ export default function ContactUsPage() {
                   Get in touch with us!
                 </h2>
                 <p className="text-base md:text-lg font-medium italic leading-relaxed">
-                  For product inquiries, partnerships, or general questions, please
-                  send us your details through this form.
+                  For product inquiries, partnerships, or general questions,
+                  please send us your details through this form.
                   <br />
                   We'll get back to you promptly.
                 </p>
