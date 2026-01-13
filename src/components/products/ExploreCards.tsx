@@ -21,7 +21,7 @@ export const ExploreCards = ({ products }: ExploreCardsProps) => {
 
   return (
     <section className="w-full px-4 md:px-10 lg:px-16 py-12">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-1 md:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1 md:gap-8">
         {products.map((product, index) => (
           <motion.div
             key={product._id}
