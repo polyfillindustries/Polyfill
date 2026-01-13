@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { HoverBorderGradient } from "../ui/hover-border-gradient";
 
 const slides = [
   {

@@ -1,10 +1,10 @@
 
 import Counter from "@/components/home/Counter";
-import HeroSlideshow from "@/components/Hero";
-import Overview from "@/components/Overview";
-import { PolymerCards } from "@/components/PolymerCards";
+import HeroSlideshow from "@/components/home/Hero";
+import Overview from "@/components/home/Overview";
+import { PolymerCards } from "@/components/home/PolymerCards";
 import { TimelineDemo } from "@/components/home/Timeline";
-import ToolsAndTech from "@/components/Tools";
+import ToolsAndTech from "@/components/home/Tools";
 
 
 export default function Home() {

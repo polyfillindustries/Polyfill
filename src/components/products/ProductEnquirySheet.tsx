@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/sheet';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { quoteFormSchema, type QuoteFormData } from '@/lib/validations';
 
 interface ProductEnquirySheetProps {
   productName: string;
@@ -19,39 +20,93 @@ interface ProductEnquirySheetProps {
 
 export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    quantity: '',
+    quantityUnit: '',
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrors({});
 
-    // TODO: Implement actual form submission logic
-    // For now, just simulate a delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Prepare data for validation
+      const dataToValidate = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        productName: productName,
+        quantity: formData.quantity ? Number(formData.quantity) : undefined,
+        quantityUnit: formData.quantityUnit || undefined,
+      };
 
-    console.log('Form submitted:', {
-      ...formData,
-      product: productName,
-    });
+      // Validate with zod schema
+      const validatedData = quoteFormSchema.parse(dataToValidate);
 
-    // Reset form
-    setFormData({ name: '', email: '', phone: '' });
-    setIsSubmitting(false);
+      // TODO: Send to API endpoint
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(validatedData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit enquiry');
+      }
+
+      // Success - reset form and close sheet
+      setFormData({ name: '', email: '', phone: '', quantity: '', quantityUnit: '' });
+      setIsOpen(false);
+      
+      // Optional: Show success message
+      alert('Enquiry submitted successfully! We will contact you soon.');
+
+    } catch (error) {
+      if (error instanceof Error && 'errors' in error) {
+        // Zod validation errors
+        const zodError = error as any;
+        const fieldErrors: Record<string, string> = {};
+        zodError.errors?.forEach((err: any) => {
+          if (err.path) {
+            fieldErrors[err.path[0]] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+      } else {
+        console.error('Form submission error:', error);
+        alert('Failed to submit enquiry. Please try again.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    // Clear error for this field
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <button className="relative flex items-center justify-center gap-3 w-full bg-zinc-900 hover:bg-zinc-800 text-white font-bold py-5 px-8 rounded-2xl transition-all shadow-xl active:scale-[0.98] group">
           <MessageSquare className="w-5 h-5" />
@@ -66,7 +121,7 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
           </svg>
         </button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-[90%] p-4 md:px-15 ">
+      <SheetContent side="bottom" className="w-[90%] p-4 md:px-15 ">
         <SheetHeader>
           <SheetTitle className="text-2xl font-bold text-zinc-900">
             Product Enquiry
@@ -93,6 +148,9 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
               className="w-full"
               disabled={isSubmitting}
             />
+            {errors.name && (
+              <p className="text-sm text-red-500">{errors.name}</p>
+            )}
           </div>
 
           {/* Email Field */}
@@ -111,6 +169,9 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
               className="w-full"
               disabled={isSubmitting}
             />
+            {errors.email && (
+              <p className="text-sm text-red-500">{errors.email}</p>
+            )}
           </div>
 
           {/* Phone Field */}
@@ -129,6 +190,52 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
               className="w-full"
               disabled={isSubmitting}
             />
+            {errors.phone && (
+              <p className="text-sm text-red-500">{errors.phone}</p>
+            )}
+          </div>
+
+          {/* Quantity and Unit Fields */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="quantity" className="text-zinc-700 font-semibold">
+                Quantity
+              </Label>
+              <Input
+                id="quantity"
+                name="quantity"
+                type="number"
+                min="1"
+                step="any"
+                value={formData.quantity}
+                onChange={handleChange}
+                placeholder="e.g., 100"
+                className="w-full"
+                disabled={isSubmitting}
+              />
+              {errors.quantity && (
+                <p className="text-sm text-red-500">{errors.quantity}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="quantityUnit" className="text-zinc-700 font-semibold">
+                Unit
+              </Label>
+              <Input
+                id="quantityUnit"
+                name="quantityUnit"
+                type="text"
+                value={formData.quantityUnit}
+                onChange={handleChange}
+                placeholder="e.g., kg, tons"
+                className="w-full"
+                disabled={isSubmitting}
+              />
+              {errors.quantityUnit && (
+                <p className="text-sm text-red-500">{errors.quantityUnit}</p>
+              )}
+            </div>
           </div>
 
           {/* Product Info Display */}
