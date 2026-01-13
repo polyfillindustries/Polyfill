@@ -34,11 +34,11 @@ const ToolsAndTech = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="mb-8 sm:mb-10 md:mb-12 text-center">
-          <div className="flex md:text-4xl justify-left">
+        <div className="mb-8 sm:mb-10 md:mb-12 text-center md:text-left">
+          <div className="flex md:text-4xl justify-center ">
             <TypewriterEffectSmooth words={words} className="text-3xl" />
           </div>
           <p className="text-zinc-700 text-lg sm:text-base md:text-xl px-1">
