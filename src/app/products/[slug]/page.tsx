@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation'
 import { getProductBySlug, getAllProductSlugs } from '@/sanity/lib/queries'
 import { ProductImageCarousel } from '@/components/products/ProductImageCarousel'
 import { ProductsDescription } from '@/components/products/ProductsDescription'
+import { Metadata } from "next";
+
+
 
 interface ProductPageProps {
   params: Promise<{
@@ -15,6 +18,10 @@ export async function generateStaticParams() {
     slug: slug,
   }))
 }
+
+export const metadata: Metadata = {
+  title: "Product Details - Explore Our Products  | Polyfill Industries",
+};
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params
