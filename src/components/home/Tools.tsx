@@ -10,7 +10,7 @@ import {
   Recycle,
 } from "lucide-react";
 
-import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 
 const ToolsAndTech = () => {
   const containerVariants = {

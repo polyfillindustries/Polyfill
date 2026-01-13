@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/sheet';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { quoteFormSchema, type QuoteFormData } from '@/lib/validations';
 
 interface ProductEnquirySheetProps {
   productName: string;
@@ -24,67 +23,32 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
     name: '',
     email: '',
     phone: '',
-    quantity: '',
-    quantityUnit: '',
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setErrors({});
 
-    try {
-      // Validate form data
-      const validationData: QuoteFormData = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        productName: productName,
-        quantity: formData.quantity ? parseFloat(formData.quantity) : undefined,
-        quantityUnit: formData.quantityUnit || undefined,
-      };
+    // TODO: Implement actual form submission logic
+    // For now, just simulate a delay
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
-      const validatedData = quoteFormSchema.parse(validationData);
+    console.log('Form submitted:', {
+      ...formData,
+      product: productName,
+    });
 
-      // TODO: Implement actual form submission logic
-      // For now, just simulate a delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      console.log('Form submitted:', validatedData);
-
-      // Reset form
-      setFormData({ name: '', email: '', phone: '', quantity: '', quantityUnit: '' });
-      setIsSubmitting(false);
-    } catch (error: any) {
-      setIsSubmitting(false);
-      if (error.errors) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err: any) => {
-          if (err.path) {
-            fieldErrors[err.path[0]] = err.message;
-          }
-        });
-        setErrors(fieldErrors);
-      }
-    }
+    // Reset form
+    setFormData({ name: '', email: '', phone: '' });
+    setIsSubmitting(false);
   };
 
- const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  const { name, value } = e.target;
-  setFormData(prev => ({
-    ...prev,
-    [name]: value,
-  }));
-  // Clear error for this field when user starts typing
-  if (errors[name]) {
-    setErrors(prev => {
-      const newErrors = { ...prev };
-      delete newErrors[name];
-      return newErrors;
-    });
-  }
-};
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <Sheet>
@@ -102,10 +66,7 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
           </svg>
         </button>
       </SheetTrigger>
-<SheetContent 
-  side="bottom" 
-  className="w-full sm:max-w-md md:max-w-md lg:max-w-[25vw] p-4 md:px-10 overflow-y-auto"
->
+      <SheetContent side="right" className="w-[90%] p-4 md:px-15 ">
         <SheetHeader>
           <SheetTitle className="text-2xl font-bold text-zinc-900">
             Product Enquiry
@@ -132,7 +93,6 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
               className="w-full"
               disabled={isSubmitting}
             />
-            {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
           </div>
 
           {/* Email Field */}
@@ -151,7 +111,6 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
               className="w-full"
               disabled={isSubmitting}
             />
-            {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
           </div>
 
           {/* Phone Field */}
@@ -167,43 +126,6 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
               value={formData.phone}
               onChange={handleChange}
               placeholder="+91 98765 43210"
-              className="w-full"
-              disabled={isSubmitting}
-            />
-            {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
-          </div>
-
-          {/* Quantity Field */}
-          <div className="space-y-2">
-            <Label htmlFor="quantity" className="text-zinc-700 font-semibold">
-              Quantity (Optional)
-            </Label>
-            <Input
-              id="quantity"
-              name="quantity"
-              type="number"
-              step="any"
-              value={formData.quantity}
-              onChange={handleChange}
-              placeholder="Enter quantity"
-              className="w-full"
-              disabled={isSubmitting}
-            />
-            {errors.quantity && <p className="text-sm text-red-500">{errors.quantity}</p>}
-          </div>
-
-          {/* Quantity Unit Field */}
-          <div className="space-y-2">
-            <Label htmlFor="quantityUnit" className="text-zinc-700 font-semibold">
-              Unit (Optional)
-            </Label>
-            <Input
-              id="quantityUnit"
-              name="quantityUnit"
-              type="text"
-              value={formData.quantityUnit}
-              onChange={handleChange}
-              placeholder="e.g., kg, tons, pieces"
               className="w-full"
               disabled={isSubmitting}
             />

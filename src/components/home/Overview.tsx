@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 
 export default function Overview() {
   const words = [

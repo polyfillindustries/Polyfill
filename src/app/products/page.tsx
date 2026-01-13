@@ -1,10 +1,7 @@
-import { Metadata } from "next";
+
 import { ExploreCards } from '@/components/products/ExploreCards';
 import {getProducts} from '@/sanity/lib/queries';
 
-export const metadata: Metadata = {
-  title: "Our Products - Explore Our Products  | Polyfill Industries",
-};
 
 export default async function ProductsPage() {
 

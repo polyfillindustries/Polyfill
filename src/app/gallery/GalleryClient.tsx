@@ -38,7 +38,6 @@ interface GalleryImage {
 // --- Main Component ---
 export default function GalleryClient({ images }: { images: GalleryImage[] }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const [activeIndex, setActiveIndex] = useState<number>(0)
 
   // Navigation handlers
   const handleNext = (e: React.MouseEvent) => {
@@ -54,28 +53,6 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
       setSelectedIndex(selectedIndex - 1)
     }
   }
-
-  // Track which image is in view
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.id.split('-')[2])
-            setActiveIndex(index)
-          }
-        })
-      },
-      { threshold: 0.5, rootMargin: '-20% 0px -20% 0px' }
-    )
-
-    images.forEach((_, index) => {
-      const element = document.getElementById(`main-image-${index}`)
-      if (element) observer.observe(element)
-    })
-
-    return () => observer.disconnect()
-  }, [images])
 
   return (
     <div className="w-full bg-white text-slate-900 min-h-screen">
@@ -154,15 +131,14 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
         </div>
         
         {/* SIDEBAR THUMBNAILS (Right - Fixed/Sticky, Independent Scroll) */}
-        <div className="sticky top-8 h-[calc(100vh-4rem)] overflow-y-auto flex flex-col gap-1 w-16 md:w-20 lg:w-24 shrink-0 scrollbar-hide py-2">
+        <div className="sticky top-8 h-[calc(100vh-4rem)] overflow-y-auto flex flex-col gap-4 md:gap-6 w-16 md:w-24 shrink-0 scrollbar-hide">
           {images.map((image, index) => (
             <div
               key={`thumb-${image._id}`}
               className={cn(
-                "relative aspect-3/4 overflow-hidden cursor-pointer transition-all duration-300 border-2",
-                activeIndex === index 
-                  ? "border-black scale-100 opacity-100 shadow-lg" 
-                  : "border-transparent opacity-50 hover:opacity-80 hover:scale-[1.02]"
+                "relative aspect-3/4 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer",
+                "opacity-60 hover:opacity-100 transition-all duration-300",
+                "shadow-sm hover:shadow-md"
               )}
               onClick={(e) => {
                 e.stopPropagation()
@@ -174,13 +150,10 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
                 src={image.thumbnailUrl}
                 alt={image.alt || "Gallery thumbnail"}
                 fill
-                className="object-cover"
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
                 sizes="100px"
               />
-              {/* Active indicator */}
-              {activeIndex === index && (
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-black" />
-              )}
+              <div className="absolute inset-0 bg-black/20 hover:bg-black/0 transition-colors" />
             </div>
           ))}
         </div>

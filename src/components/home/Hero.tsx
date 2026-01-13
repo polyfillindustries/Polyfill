@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Award } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { HoverBorderGradient } from "../ui/hover-border-gradient";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 
 const slides = [
   {
@@ -45,18 +45,6 @@ const slides = [
 export default function HeroSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
-  const heroRef = useRef<HTMLElement>(null);
-
-  // Parallax scroll effect
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Transform values for parallax
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
 
   const paginate = useCallback((newDirection: number) => {
     setDirection(newDirection);
@@ -71,47 +59,35 @@ export default function HeroSlideshow() {
   }, [paginate]);
 
   return (
-    <section 
-      ref={heroRef}
-      className="relative h-[75vh] md:h-[90vh] w-full overflow-hidden bg-zinc-950"
-    >
-      {/* 2. Main Slider with Parallax */}
+    <section className="relative h-[75vh] md:h-[90vh] w-full overflow-hidden bg-zinc-950">
+     
+
+      {/* 2. Main Slider */}
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={currentIndex}
           custom={direction}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 10 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="absolute inset-0"
         >
-          {/* Parallax Image Container */}
-          <motion.div
-            style={{ y: imageY, opacity }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={slides[currentIndex].image}
-              alt={slides[currentIndex].title}
-              fill
-              priority
-              className="object-cover scale-110" // Increased scale for parallax movement room
-            />
-          </motion.div>
+          <Image
+            src={slides[currentIndex].image}
+            alt={slides[currentIndex].title}
+            fill
+            priority
+            className="object-cover scale-105" // Slight scale to allow for parallax feel
+          />
 
           {/* 3. The "Shadow/Vignette" Effect */}
           {/* Deep shadow from left for text readability and cinematic corners */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 z-10" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/20 to-transparent z-10" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-black/20 z-10" />
 
-          {/* 4. Content Container with Parallax */}
-          <motion.div 
-            style={{ y: contentY, 
-              opacity: opacity
-            }}
-            className="absolute inset-0 z-20 flex items-center px-6 md:px-16 lg:px-24"
-          >
+          {/* 4. Content Container */}
+          <div className="absolute inset-0 z-20 flex items-center px-6 md:px-16 lg:px-24">
             <div className="max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -141,7 +117,7 @@ export default function HeroSlideshow() {
                 </div>
               </motion.div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </AnimatePresence>
 
