@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
   },
   // Enable compression
   compress: true,
+  // Required for Netlify deployment
+  output: 'standalone',
   // Reduce bundle size
   modularizeImports: {
     'lucide-react': {
