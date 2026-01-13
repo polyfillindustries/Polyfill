@@ -54,7 +54,7 @@ export default function ContactUsPage() {
             {/* Left Side - Image with Overlay Text */}
             <div className="relative w-full h-full min-h-75 md:min-h-125">
               <Image
-                src="/hero/img1.jpg"
+                src="/hero/img1.JPG"
                 alt="Contact Polyfill Industries"
                 fill
                 className="object-cover rounded-lg"

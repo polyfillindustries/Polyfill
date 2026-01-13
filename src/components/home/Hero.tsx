@@ -10,33 +10,33 @@ import { HoverBorderGradient } from "../ui/hover-border-gradient";
 const slides = [
   {
     id: 1,
-    image: "/hero/img7.jpg",
+    image: "/hero/img7.JPG",
     title: "Premium BOPP Granules",
     description:
       "Consistent quality for high-performance industrial applications.",
   },
   {
     id: 2,
-    image: "/hero/img2.jpg",
+    image: "/hero/img2.JPG",
     title: "Fresh PP Solutions",
     description: "Superior raw materials for durable plastic manufacturing.",
   },
   {
     id: 3,
-    image: "/hero/img3.jpg",
+    image: "/hero/img3.JPG",
     title: "Sustainable Recycling",
     description: "Converting plastic waste into high-quality recycled polymer.",
   },
   {
     id: 4,
-    image: "/hero/img4.jpg",
+    image: "/hero/img4.JPG",
     title: "Global Supply Chain",
     description:
       "Monthly production capacity of 1,200 tons for bulk requirements.",
   },
   {
     id: 5,
-    image: "/hero/img5.jpg",
+    image: "/hero/img5.JPG",
     title: "Precision Engineering",
     description: "Technical excellence in every granule we produce.",
   },

@@ -23,15 +23,15 @@ export default function AboutUs() {
   const products = [
     {
       name: "BOPP Natural Gole Dana",
-      image: "/hero/img2.jpg", // Replace with your actual paths
+      image: "/hero/img2.JPG", // Replace with your actual paths
     },
     {
       name: "Fresh PP Granules",
-      image:  "/hero/img6.jpg",
+      image:  "/hero/img6.JPG",
     },
     {
       name: "Recycled PP Granules",
-      image: "/hero/img7.jpg",
+      image: "/hero/img7.JPG",
     },
   ];
 
