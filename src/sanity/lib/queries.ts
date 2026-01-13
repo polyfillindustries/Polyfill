@@ -45,9 +45,7 @@ export async function getAllProductSlugs(): Promise<string[]> {
   const query = `*[_type == "product"].slug.current`
   
   try {
-    const slugs = await client.fetch(query, {}, {
-      next: { revalidate: 3600, tags: ['products'] } // Add tags for on-demand revalidation
-    })
+    const slugs = await client.fetch(query)
     return slugs
   } catch (error) {
     console.error('Error fetching slugs:', error)
