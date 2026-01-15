@@ -5,14 +5,27 @@ import Overview from "@/components/home/Overview";
 import { PolymerCards } from "@/components/home/PolymerCards";
 import { TimelineDemo } from "@/components/home/Timeline";
 import ToolsAndTech from "@/components/home/Tools";
+import { Hero2 } from "@/components/home/Hero2";
 
 
 export default function Home() {
   return (
     < div className="bg-white">
-    <div className="">
+    {/* <div className="">
      <HeroSlideshow />
-    </div>
+    </div> */}
+
+    <Hero2 
+  video="/videos/vid.mp4"
+  overlayOpacity={0.7}
+  className="min-h-[80vh]"
+>
+  <div className="flex flex-col text-white font-medium gap-y-4 items-center justify-center h-full">
+    <h2>A SHAKTI POLYMERS UNIT</h2>
+    <h1 className="text-white font-bold text-5xl"><span className="text-bprimary">POLYFILL</span> INDUSTRIES</h1>
+    <h2>Engineered POLYPROPYLENE for Everyday Excellence </h2>
+  </div>
+</Hero2>
      
       <div className="p-1  space-y-15">
         <Overview/>

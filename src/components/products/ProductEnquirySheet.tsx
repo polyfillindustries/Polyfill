@@ -121,13 +121,13 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
           </svg>
         </button>
       </SheetTrigger>
-      <SheetContent side="bottom" className="w-[90%] p-4 md:px-15 ">
+      <SheetContent side="right" className="w-full p-4 md:px-8 ">
         <SheetHeader>
           <SheetTitle className="text-2xl font-bold text-zinc-900">
             Product Enquiry
           </SheetTitle>
-          <SheetDescription className="text-zinc-600">
-            Get in touch with us about <span className="font-semibold text-zinc-900">{productName}</span>
+          <SheetDescription className="text-zinc-600 text-lg">
+            Get in touch with us about <span className="font-semibold  text-zinc-900">{productName}</span>
           </SheetDescription>
         </SheetHeader>
 
