@@ -20,10 +20,10 @@ export default function Home() {
   overlayOpacity={0.7}
   className="min-h-[80vh]"
 >
-  <div className="flex flex-col text-white font-medium gap-y-4 items-center justify-center h-full">
-    <h2>A SHAKTI POLYMERS UNIT</h2>
-    <h1 className="text-white font-bold text-5xl"><span className="text-bprimary">POLYFILL</span> INDUSTRIES</h1>
-    <h2>Engineered POLYPROPYLENE for Everyday Excellence </h2>
+  <div className="flex flex-col font-inter text-white font-medium gap-y-4 items-center justify-center h-full">
+    <h2 className="font-semibold">A SHAKTI POLYMERS UNIT</h2>
+    <h1 className="text-white text-center font-bold text-3xl md:text-5xl"><span className="text-bprimary">POLYFILL</span> INDUSTRIES</h1>
+    <h2 className="text-center md:text-xl font-semibold">Engineered <span className="text-bprimary">POLYPROPYLENE</span> for Everyday Excellence </h2>
   </div>
 </Hero2>
      
