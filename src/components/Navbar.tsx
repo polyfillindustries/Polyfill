@@ -36,9 +36,9 @@ export const Navbar = () => {
       <div className="hidden md:block bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center gap-8 py-2 text-sm font-inter">
-            <a href={`tel:${CONTACT_INFO.phone}`} className="flex items-center gap-2 hover:text-baccent transition-colors">
+            <a href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-baccent transition-colors">
               <Phone size={16} />
-              {CONTACT_INFO.phone}
+              {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
             </a>
             <span className="text-baccent">|</span>
             {/* Social Icons */}
@@ -77,9 +77,9 @@ export const Navbar = () => {
               ))}*/}
             </div>
             <span className="text-baccent">|</span>
-            <a href={`mailto:${CONTACT_INFO.email}`} className="flex items-center gap-2 hover:text-baccent transition-colors">
+            <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className="flex items-center gap-2 hover:text-baccent transition-colors">
               <Mail size={16} />
-              {CONTACT_INFO.email}
+              {process.env.NEXT_PUBLIC_EMAIL}
             </a>
           </div>
         </div>
@@ -169,11 +169,11 @@ export const Navbar = () => {
               {/* Mobile Contact Info - Fixed at Bottom */}
               <div className="border-t border-bprimary/20 pt-4 space-y-3 pb-6">
                 <a 
-                  href={`tel:${CONTACT_INFO.phone}`} 
+                  href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} 
                   className="flex items-center gap-3 text-bgray hover:text-bprimary transition-colors py-2 px-4"
                 >
                   <Phone size={20} />
-                  <span className="font-inter text-sm">{CONTACT_INFO.phone}</span>
+                  <span className="font-inter text-sm">{process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}</span>
                 </a>
                 <a 
                   href={`mailto:${CONTACT_INFO.email}`} 

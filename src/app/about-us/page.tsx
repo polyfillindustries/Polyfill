@@ -77,8 +77,7 @@ export default function AboutUs() {
           className="mt-4 md:mt-6 text-zinc-600 text-base md:text-lg lg:text-xl max-w-4xl font-medium mx-auto leading-relaxed px-2"
         >
           Established in{" "}
-          <span className="text-zinc-900 font-semibold">1988</span>, Polyfill
-          Industries (formerly Shakti Polymers) has grown into a leading name in
+          <span className="text-zinc-900 font-semibold">1988</span>, Polyfill (formerly Shakti Polymers) has grown into a leading name in
           the plastic granules industry under the guidance of{" "}
           <span className="text-zinc-900 font-semibold">
             Mr. Kashmiri Lal Jindal
