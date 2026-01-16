@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 interface Hero2Props {
-  video: string;
+  video: string | { mobile: string; desktop: string };
   overlayOpacity?: number;
   className?: string;
   children?: React.ReactNode;
@@ -16,6 +16,8 @@ export const Hero2 = ({
   className = '',
   children 
 }: Hero2Props) => {
+  const mobileVideo = typeof video === 'string' ? video : video.mobile;
+  const desktopVideo = typeof video === 'string' ? video : video.desktop;
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -43,14 +45,27 @@ export const Hero2 = ({
         style={{ y: videoY, scale: videoScale }}
         className="absolute top-0 left-0 w-full h-full"
       >
+        {/* Mobile Video */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover md:hidden"
         >
-          <source src={video} type="video/mp4" />
+          <source src={mobileVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        
+        {/* Desktop Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="hidden md:block w-full h-full object-cover"
+        >
+          <source src={desktopVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </motion.div>

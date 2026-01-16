@@ -7,15 +7,15 @@ export const NAV_LINKS = [
 ];
 
 export const CONTACT_INFO = {
-  phone: '+91 8048773212',
+  phone: '+91 9810355151',
   email: 'polyfillindustries@gmail.com',
   address: 'C-57, Sector-4, Dsidc Bawana Ind. Area, Bawana, Delhi - 110039, India',
   addressLink: '#',
 };
 
 export const COMPANY_INFO = {
-  name: 'Polyfill Industries',
-  description: 'Leading manufacturer of high-quality polymer products for modern applications.',
+  name: 'Polyfill ',
+  description: 'A Shakti Polymers Unit',
   tagline: 'Innovative Polymer Solutions',
 };
 
@@ -30,15 +30,16 @@ export const FOOTER_LINKS = {
     { name: 'Products', href: '/products' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Site Map', href: '/sitemap' },
+    {name : 'Catalog ', href: '/' },
   ],
 };
 
-export const SOCIAL_LINKS = [
-  { name: 'Facebook', href: '#', icon: 'facebook' },
-  { name: 'Twitter', href: '#', icon: 'twitter' },
-  { name: 'LinkedIn', href: '#', icon: 'linkedin' },
-  { name: 'Instagram', href: '#', icon: 'instagram' },
-];
+// export const SOCIAL_LINKS = [
+//   { name: 'Facebook', href: '#', icon: 'facebook' },
+//   { name: 'Twitter', href: '#', icon: 'twitter' },
+//   { name: 'LinkedIn', href: '#', icon: 'linkedin' },
+//   { name: 'Instagram', href: '#', icon: 'instagram' },
+// ];
 
 /**
  * Form validation constants

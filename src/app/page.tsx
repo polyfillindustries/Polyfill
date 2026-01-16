@@ -14,7 +14,7 @@ export default function Home() {
     </div> */}
 
       <Hero2
-        video="/videos/vid.mp4"
+        video={{ mobile: "/videos/vid2.mp4", desktop: "/videos/vid2.mp4" }}
         overlayOpacity={0.6}
         className="min-h-[80vh]"
       >
@@ -22,17 +22,17 @@ export default function Home() {
           <h2 className="font-semibold text-sm md:text-lg font-serif ">
             A SHAKTI POLYMERS UNIT
           </h2>
-          <h1 className="text-white text-center font-bold  text-3xl md:text-5xl">
-            <span className="text-bprimary">POLYFILL</span> INDUSTRIES
+          <h1 className="text-white  text-center font-bold  text-2xl md:text-5xl">
+            <span className="text-bprimary">POLYFILL</span>
           </h1>
-          <h2 className="text-center md:text-xl font-bold">
+          <h2 className="text-center md:text-xl text-sm font-bold">
             Engineered <span className="text-bprimary">POLYPROPYLENE</span> for
             Everyday Excellence{" "}
           </h2>
         </div>
       </Hero2>
 
-      <div className="  space-y-15">
+      <div className="py-1  space-y-15">
         <Overview />
       </div>
 

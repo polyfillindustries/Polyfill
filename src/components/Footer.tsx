@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { COMPANY_INFO, CONTACT_INFO, FOOTER_LINKS, SOCIAL_LINKS } from '@/lib/constants';
+import { COMPANY_INFO, CONTACT_INFO, FOOTER_LINKS} from '@/lib/constants';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 export const Footer = () => {
@@ -99,7 +99,7 @@ export const Footer = () => {
             </ul>
 
             {/* Social Links */}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h4 className="font-inter font-medium text-sm mb-3 text-white">Follow Us</h4>
               <div className="flex gap-4">
                 {SOCIAL_LINKS.map((social) => (
@@ -134,7 +134,7 @@ export const Footer = () => {
                   </a>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
