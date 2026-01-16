@@ -2,7 +2,13 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { X, ChevronLeft, ChevronRight } from 'lucide-react'
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  PanelRightClose,
+  PanelRightOpen,
+} from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
@@ -16,30 +22,14 @@ interface GalleryImage {
   fullUrl: string
 }
 
-interface GalleryClientProps {
-  images: GalleryImage[]
-}
-
-// --- Utility for Tailwind classes ---
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// --- Types ---
-interface GalleryImage {
-  _id: string
-  title?: string
-  alt?: string
-  date?: string
-  thumbnailUrl: string
-  fullUrl: string
-}
-
-// --- Main Component ---
 export default function GalleryClient({ images }: { images: GalleryImage[] }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-  // Navigation handlers
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation()
     if (selectedIndex !== null && selectedIndex < images.length - 1) {
@@ -55,190 +45,179 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
   }
 
   return (
-    <div className="w-full bg-white text-slate-900 min-h-screen">
-      
-      {/* MASTER LAYOUT GRID 
-        - Mobile & Desktop: Main images + Sidebar thumbnails
-        - Main column scrolls naturally, sidebar is independent
-      */}
-      <div className="relative flex gap-3 md:gap-6 px-3 md:px-6 lg:px-8 py-8">
-        
-        {/* MAIN IMAGES COLUMN (Left - Scrollable) */}
-        <div className="flex-1 flex flex-col gap-8 md:gap-12">
-        
+    <div className="w-full bg-black min-h-screen">
+      {/* TOGGLE BUTTON */}
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className="fixed bottom-27 md:bottom-25 right-3.5 md:right-7 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
+      >
+        {isSidebarOpen ? (
+          <PanelRightClose className="w-5 h-5" />
+        ) : (
+          <PanelRightOpen className="w-5 h-5" />
+        )}
+      </button>
+
+      <div className="relative flex px-3 md:px-6 lg:px-8 py-8">
+        {/* MAIN COLUMN */}
+        <div className="flex-1 flex flex-col items-center gap-16 md:gap-24">
           {images.map((image, index) => (
             <motion.div
               key={image._id}
               id={`main-image-${index}`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="relative group cursor-zoom-in"
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full max-w-4xl cursor-pointer"
               onClick={() => setSelectedIndex(index)}
             >
-              {/* The Image Container */}
-              <div className="relative aspect-3/4 md:aspect-4/5 lg:aspect-16/10 w-full overflow-hidden rounded-3xl md:rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all duration-500">
-                <Image
-                  src={image.fullUrl}
-                  alt={image.alt || image.title || 'Gallery image'}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-[1.02]"
-                  sizes="(max-width: 768px) 85vw, (max-width: 1200px) 80vw, 1200px"
-                  priority={index < 2}
-                />
-                
-                {/* Hover Overlay with Info */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-end p-6 lg:p-10">
-                  <div className="text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                    {image.title && (
-                      <p className="font-semibold text-base md:text-lg lg:text-xl tracking-wide uppercase drop-shadow-lg">
-                        {image.title}
-                      </p>
-                    )}
-                    {image.date && (
-                      <p className="text-xs md:text-sm lg:text-base font-light text-white/90 mt-2">
-                        {new Date(image.date).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric'
-                        })}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </div>
+              {/* IMAGE + DESKTOP OVERLAY */}
+              <div className="w-full">
+                <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-all duration-700 group hover:border-white/20 hover:shadow-[0_0_50px_-12px_rgba(59,130,246,0.3)]">
+                  <Image
+                    src={image.fullUrl}
+                    alt={image.alt || image.title || 'Gallery Image'}
+                    fill
+                    className="object-cover transition-all duration-1000 scale-[1.05] hover:scale-100 brightness-90 hover:brightness-110"
+                    sizes="(max-width: 1400px) 80vw, 1000px"
+                    priority={index < 2}
+                  />
 
-              {/* Mobile: Caption below image */}
-              <div className="md:hidden mt-4 px-2">
-                {image.title && (
-                  <p className="text-sm font-semibold text-gray-900 tracking-wide leading-tight">
-                    {image.title}
-                  </p>
-                )}
-                {image.date && (
-                  <p className="text-xs text-gray-500 mt-1.5 font-light">
-                    {new Date(image.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    })}
-                  </p>
-                )}
+                  {/* DESKTOP OVERLAY ONLY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hidden md:flex hover:opacity-100 transition-opacity duration-500 flex-col justify-end p-8">
+                    <motion.div
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-xl w-fit"
+                    >
+                      {image.title && (
+                        <h3 className="font-medium text-2xl text-white">
+                          {image.title}
+                        </h3>
+                      )}
+                      {image.date && (
+                        <p className="text-xs font-mono text-white/50 mt-2">
+                          {new Date(image.date)
+                            .toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: '2-digit',
+                            })
+                            .toUpperCase()}
+                        </p>
+                      )}
+                    </motion.div>
+                  </div>
+
+                  {/* CORNERS */}
+                  <div className="absolute top-4 right-4 h-8 w-8 border-t border-r border-white/20" />
+                  <div className="absolute bottom-4 left-4 h-8 w-8 border-b border-l border-white/20" />
+                </div>
+
+                {/* MOBILE TITLE + DATE */}
+                <div className="mt-4 px-1 md:hidden">
+                  {image.title && (
+                    <h3 className="text-white text-lg font-medium tracking-tight">
+                      {image.title}
+                    </h3>
+                  )}
+                  {image.date && (
+                    <p className="text-xs text-white/60 mt-1">
+                      {new Date(image.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </p>
+                  )}
+                 
+                  {/* <div className='text-white'/> */}
+                </div>
+                 <hr className='border-zinc-800 md:hidden border-t-2 my-2 mb-3' />
               </div>
             </motion.div>
           ))}
         </div>
-        
-        {/* SIDEBAR THUMBNAILS (Right - Fixed/Sticky, Independent Scroll) */}
-        <div className="sticky top-8 h-[calc(100vh-4rem)] overflow-y-auto flex flex-col gap-4 md:gap-6 w-16 md:w-24 shrink-0 scrollbar-hide">
-          {images.map((image, index) => (
-            <div
-              key={`thumb-${image._id}`}
-              className={cn(
-                "relative aspect-3/4 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer",
-                "opacity-60 hover:opacity-100 transition-all duration-300",
-                "shadow-sm hover:shadow-md"
-              )}
-              onClick={(e) => {
-                e.stopPropagation()
-                const mainImage = document.getElementById(`main-image-${index}`)
-                mainImage?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-              }}
-            >
-              <Image
-                src={image.thumbnailUrl}
-                alt={image.alt || "Gallery thumbnail"}
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
-                sizes="100px"
-              />
-              <div className="absolute inset-0 bg-black/20 hover:bg-black/0 transition-colors" />
-            </div>
-          ))}
-        </div>
+
+        {/* SIDEBAR */}
+        <AnimatePresence>
+          {isSidebarOpen && (
+            <motion.div initial={{ width: 0, opacity: 0, marginLeft: 0 }} animate={{ width: "auto", opacity: 1, marginLeft: 24 }} exit={{ width: 0, opacity: 0, marginLeft: 0 }} transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }} className="sticky top-8 h-[calc(100vh-4rem)] overflow-hidden shrink-0" >
+             <div className="w-16 md:w-54 h-full p-1 md:p-5 bg-bgray overflow-y-auto scrollbar-hide flex flex-col gap-4 md:gap-6 pr-2">
+                {images.map((image, index) => (
+                  <div
+                    key={image._id}
+                  className={cn( "relative aspect-3/4 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer", "opacity-60 hover:opacity-100 transition-all duration-300 shadow-sm hover:shadow-md shrink-0" )}
+                    onClick={() =>
+                      document
+                        .getElementById(`main-image-${index}`)
+                        ?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'center',
+                        })
+                    }
+                  >
+                    <Image
+                      src={image.thumbnailUrl}
+                      alt="Thumbnail"
+                      fill
+                      className="object-cover grayscale hover:grayscale-0 transition-all"
+                      sizes="100px"
+                    />
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* --- LIGHTBOX MODAL --- */}
+      {/* LIGHTBOX (UNCHANGED) */}
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95"
             onClick={() => setSelectedIndex(null)}
           >
-            {/* Close Button */}
-            <button 
-              onClick={() => setSelectedIndex(null)}
-              className="absolute right-6 top-6 z-50 p-2 text-gray-800 transition-colors hover:text-gray-500"
-              aria-label="Close gallery"
-            >
-              <X className="h-8 w-8" />
+            <button className="absolute right-10 top-10 p-4 bg-white/5 rounded-full">
+              <X className="h-6 w-6 text-white" />
             </button>
 
-            {selectedIndex > 0 && (
-              <button
-                onClick={handlePrev}
-                className="absolute left-6 top-1/2 z-50 -translate-y-1/2 p-2 md:p-4 text-gray-800 transition-colors hover:text-gray-500"
-                aria-label="Previous image"
-              >
-                <ChevronLeft className="h-10 w-10" />
-              </button>
-            )}
-
-            {selectedIndex < images.length - 1 && (
-              <button
-                onClick={handleNext}
-                className="absolute right-6 top-1/2 z-50 -translate-y-1/2 p-2 md:p-4 text-gray-800 transition-colors hover:text-gray-500"
-                aria-label="Next image"
-              >
-                <ChevronRight className="h-10 w-10" />
-              </button>
-            )}
-
-            {/* Main Image */}
             <motion.div
-              key={selectedIndex}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative h-[90vh] w-[90vw] p-4"
+              className="relative h-[70vh] w-[80vw] max-w-6xl"
               onClick={(e) => e.stopPropagation()}
             >
               <Image
                 src={images[selectedIndex].fullUrl}
-                alt={images[selectedIndex].alt || 'Gallery full view'}
+                alt="Detailed View"
                 fill
                 className="object-contain"
-                quality={100}
-                priority
-                sizes="90vw"
               />
+              <div className="absolute -bottom-20 left-0 border-l-2 border-blue-500 pl-6"> 
+                <h4 className="text-2xl font-light text-white uppercase tracking-tighter">{images[selectedIndex].title}</h4> 
+                <p className="text-blue-400 font-mono text-xs mt-1">{images[selectedIndex].date}</p> </div>
             </motion.div>
 
-            {/* Caption */}
-            {(images[selectedIndex].title || images[selectedIndex].date) && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="absolute bottom-6 left-0 right-0 text-center pointer-events-none"
+            <div className="absolute inset-x-10 top-1/2 -translate-y-1/2 flex justify-between">
+              <button
+                onClick={handlePrev}
+                disabled={selectedIndex === 0}
+                className="p-6 bg-white/5 rounded-full disabled:opacity-0"
               >
-                <div className="inline-block bg-white/80 px-6 py-3 backdrop-blur-md rounded-full shadow-sm">
-                  <p className="text-sm font-medium text-gray-900">
-                    {images[selectedIndex].title}
-                    {images[selectedIndex].title && images[selectedIndex].date && (
-                      <span className="mx-3 text-gray-400">•</span>
-                    )}
-                    {images[selectedIndex].date &&
-                      new Date(images[selectedIndex].date).toLocaleDateString()}
-                  </p>
-                </div>
-              </motion.div>
-            )}
+                <ChevronLeft className="h-8 w-8 text-white" />
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={selectedIndex === images.length - 1}
+                className="p-6 bg-white/5 rounded-full disabled:opacity-0"
+              >
+                <ChevronRight className="h-8 w-8 text-white" />
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

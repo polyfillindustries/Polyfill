@@ -8,12 +8,12 @@ export default function Overview() {
     { text: "Overview", className: "text-bprimary" },
   ];
   return (
-    <section className="relative w-full py-8 md:py-16 lg:py-24 px-1 rounded-2xl md:px-4 bg-white overflow-hidden">
+    <section className="relative w-full sm:mt-10 md:mt-5 py-2 md:py-16 lg:py-24  rounded-2xl px-2 md:px-4 bg-white overflow-hidden">
       {/* Background Decorative Element */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-bprimary/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-bprimary/5 md:rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="relative bg-zinc-900 rounded-lg md:rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5">
+        <div className="relative bg-zinc-900 rounded-lg lg:rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5">
           <div className="flex flex-col lg:flex-row">
             {/* --- IMAGE SECTION --- */}
             <div className="w-full lg:w-1/2 relative min-h-62.5 md:min-h-87.5 lg:min-h-162.5">
@@ -56,7 +56,7 @@ export default function Overview() {
 
                 <div className="space-y-4 text-center p-1 md:space-y-6 text-zinc-300 text-md md:text-base lg:text-lg leading-relaxed">
                   <p>
-                    Shakti Polymers, established in{" "}
+                    Polyfill (formerly Shakti Polymers), established in{" "}
                     <span className="text-white font-bold tracking-tight">
                       1988
                     </span>

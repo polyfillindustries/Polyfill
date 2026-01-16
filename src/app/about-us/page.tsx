@@ -13,11 +13,12 @@ import {
   Globe,
   Award,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutUs() {
   const words = [
     { text: "About" },
-    { text: "Polyfill Industries.", className: "text-bprimary" },
+    { text: "Polyfill ", className: "text-bprimary" },
   ];
 
   const products = [
@@ -46,17 +47,38 @@ export default function AboutUs() {
     <div className="bg-white font-inter selection:bg-bprimary/10">
       {/* --- HERO SECTION --- */}
       <section className="relative pt-12 pb-8 md:pt-24 md:pb-20 px-4 max-w-7xl mx-auto text-center">
-        <div className="flex justify-center">
-          <TypewriterEffectSmooth words={words} />
+       
+        <div className="flex  justify-center">
+          <TypewriterEffectSmooth words={words} className="mx-3" />
         </div>
+         <motion.div
+          {...fadeIn}
+          className="inline-flex items-center justify-center gap-2.5 px-4 py-2 bg-zinc-50 border border-bgray rounded-full mx-auto mb-6 shadow-sm whitespace-nowrap"
+        >
+         
+
+          {/* Logo & Text Wrapper to ensure perfect horizontal alignment */}
+          <div className="flex items-center gap-1">
+             <span className="text-zinc-800 text-sm font-medium">A Unit of</span>
+            <span className="text-red-700 font-bold text-sm md:text-base tracking-tight ">
+              Shakti Polymers
+            </span>
+            {/* Uncomment if using image: 
+    <div className="h-4 w-px bg-zinc-300 mx-1" /> 
+    <Image src="/sp.png" alt="Logo" width={20} height={20} className="object-contain" /> 
+    */}
+          </div>
+
+          {/* <span className="text-zinc-800 text-sm font-medium">Unit</span> */}
+        </motion.div>
+
         <motion.p
           {...fadeIn}
           className="mt-4 md:mt-6 text-zinc-600 text-base md:text-lg lg:text-xl max-w-4xl font-medium mx-auto leading-relaxed px-2"
         >
           Established in{" "}
-          <span className="text-zinc-900 font-semibold">1988</span>, Shakti
-          Polymers has grown into a leading name in the plastic granules
-          industry under the guidance of{" "}
+          <span className="text-zinc-900 font-semibold">1988</span>, Polyfill (formerly Shakti Polymers) has grown into a leading name in
+          the plastic granules industry under the guidance of{" "}
           <span className="text-zinc-900 font-semibold">
             Mr. Kashmiri Lal Jindal
           </span>

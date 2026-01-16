@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, Loader2 } from "lucide-react";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations";
 import { API_MESSAGES } from "@/lib/constants";
+import { toast } from "sonner";
 
 // Extend Window interface for reCAPTCHA
 declare global {
@@ -44,10 +45,6 @@ export default function ContactForm() {
     message: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitMessage, setSubmitMessage] = useState<{
-    type: "success" | "error";
-    text: string;
-  } | null>(null);
 
   const validateForm = (): boolean => {
     try {
@@ -70,9 +67,9 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitMessage(null);
 
     if (!validateForm()) {
+      toast.error("Please fix the errors in the form");
       return;
     }
 
@@ -111,16 +108,10 @@ export default function ContactForm() {
         subject: "",
         message: "",
       });
-      setSubmitMessage({
-        type: "success",
-        text: result.message || API_MESSAGES.CONTACT_SUCCESS,
-      });
+      toast.success(result.message || API_MESSAGES.CONTACT_SUCCESS);
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSubmitMessage({
-        type: "error",
-        text: error instanceof Error ? error.message : API_MESSAGES.CONTACT_ERROR,
-      });
+      toast.error(error instanceof Error ? error.message : API_MESSAGES.CONTACT_ERROR);
     } finally {
       setIsSubmitting(false);
     }
@@ -132,9 +123,10 @@ export default function ContactForm() {
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: "" }));
     }
-    // Clear submit message when user starts typing
-    if (submitMessage) {
-      setSubmitMessage(null);
+    
+    // Real-time validation for message length
+    if (field === "message" && value.length > 0 && value.length < 10) {
+      setErrors((prev) => ({ ...prev, message: "Message must be at least 10 characters" }));
     }
   };
 
@@ -246,19 +238,6 @@ export default function ContactForm() {
               </FieldDescription>
               {errors.message && <FieldError>{errors.message}</FieldError>}
             </Field>
-
-            {/* Submit Message */}
-            {submitMessage && (
-              <div
-                className={`p-4 rounded-lg ${
-                  submitMessage.type === "success"
-                    ? "bg-green-500/20 border border-green-500/50 text-green-100"
-                    : "bg-red-500/20 border border-red-500/50 text-red-100"
-                }`}
-              >
-                {submitMessage.text}
-              </div>
-            )}
 
             {/* Submit Button */}
             <Button
