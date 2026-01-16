@@ -15,8 +15,8 @@ export const CONTACT_INFO = {
 
 export const COMPANY_INFO = {
   name: 'Polyfill ',
-  description: 'A Shakti Polymers Unit',
-  tagline: 'Innovative Polymer Solutions',
+  // description: 'A Shakti Polymers Unit',
+  tagline: 'A Unit of Shakti Polymers',
 };
 
 export const FOOTER_LINKS = {

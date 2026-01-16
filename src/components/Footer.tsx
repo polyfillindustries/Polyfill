@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { COMPANY_INFO, CONTACT_INFO, FOOTER_LINKS} from '@/lib/constants';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { env } from 'process';
 
 export const Footer = () => {
   return (
@@ -21,9 +22,9 @@ export const Footer = () => {
                 className="h-8 w-auto brightness-0 invert sm:h-10 md:h-12"
               />
             </Link>
-            <p className="text-sm text-gray-300 font-inter leading-relaxed">
+            {/* <p className="text-sm text-gray-300 font-inter leading-relaxed">
               {COMPANY_INFO.description}
-            </p>
+            </p> */}
             <p className="text-baccent font-inter font-medium text-sm">
               {COMPANY_INFO.tagline}
             </p>
@@ -69,20 +70,20 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <a 
-                  href={`tel:${CONTACT_INFO.phone}`}
+                  href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
                   className="flex items-start gap-3 text-gray-300 hover:text-baccent transition-colors group"
                 >
                   <Phone size={18} className="mt-0.5 shrink-0" />
-                  <span className="font-inter text-sm">{CONTACT_INFO.phone}</span>
+                  <span className="font-inter text-sm">{process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}</span>
                 </a>
               </li>
               <li>
                 <a 
-                  href={`mailto:${CONTACT_INFO.email}`}
+                  href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                   className="flex items-start gap-3 text-gray-300 hover:text-baccent transition-colors group"
                 >
                   <Mail size={18} className="mt-0.5 shrink-0" />
-                  <span className="font-inter text-sm break-all">{CONTACT_INFO.email}</span>
+                  <span className="font-inter text-sm break-all">{process.env.NEXT_PUBLIC_EMAIL}</span>
                 </a>
               </li>
               <li>
