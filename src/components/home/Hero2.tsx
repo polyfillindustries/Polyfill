@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 interface Hero2Props {
   video: string;
@@ -16,19 +16,44 @@ export const Hero2 = ({
   className = '',
   children 
 }: Hero2Props) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Parallax: Video moves down slower than scroll
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  
+  // Zoom Out: Video scales down as you scroll
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
+  
+  // Content: Moves slightly and fades out
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <div className={`relative w-full h-[88vh] overflow-hidden ${className}`}>
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover"
+    <div 
+      ref={containerRef}
+      className={`relative w-full h-[88vh] overflow-hidden ${className}`}
+    >
+      {/* Video Background Container */}
+      <motion.div 
+        style={{ y: videoY, scale: videoScale }}
+        className="absolute top-0 left-0 w-full h-full"
       >
-        <source src={video} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src={video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </motion.div>
       
       {/* Base Static Overlay */}
       <div 
@@ -36,9 +61,9 @@ export const Hero2 = ({
         style={{ opacity: overlayOpacity }}
       />
 
-      {/* Reveal Shadow (Animates away) */}
+      {/* Reveal Shadow */}
       <motion.div
-        initial={{ opacity: 1 }}
+        initial={{ opacity: 0.5 }}
         animate={{ opacity: 0 }}
         transition={{ 
           duration: 1.8, 
@@ -49,9 +74,12 @@ export const Hero2 = ({
       />
       
       {/* Content */}
-      <div className="relative z-10 h-full">
+      <motion.div 
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-10 h-full"
+      >
         {children}
-      </div>
+      </motion.div>
     </div>
   )
 }

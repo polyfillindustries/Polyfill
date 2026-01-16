@@ -2,6 +2,17 @@
 
 import React, { useState } from 'react';
 import { MessageSquare, Send, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
+
+// Extend Window interface for reCAPTCHA
+declare global {
+  interface Window {
+    grecaptcha: {
+      execute: (siteKey: string, options: { action: string }) => Promise<string>;
+      ready: (callback: () => void) => void;
+    };
+  }
+}
 import {
   Sheet,
   SheetContent,
@@ -36,6 +47,18 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
     setErrors({});
 
     try {
+      // Get reCAPTCHA token
+      let captchaToken: string | undefined;
+      
+      if (typeof window !== "undefined" && window.grecaptcha) {
+        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+        if (siteKey) {
+          captchaToken = await window.grecaptcha.execute(siteKey, {
+            action: "submit_quote_form",
+          });
+        }
+      }
+
       // Prepare data for validation
       const dataToValidate = {
         name: formData.name,
@@ -44,12 +67,13 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
         productName: productName,
         quantity: formData.quantity ? Number(formData.quantity) : undefined,
         quantityUnit: formData.quantityUnit || undefined,
+        captchaToken,
       };
 
       // Validate with zod schema
       const validatedData = quoteFormSchema.parse(dataToValidate);
 
-      // TODO: Send to API endpoint
+      // Send to API endpoint
       const response = await fetch('/api/quote', {
         method: 'POST',
         headers: {
@@ -66,8 +90,10 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
       setFormData({ name: '', email: '', phone: '', quantity: '', quantityUnit: '' });
       setIsOpen(false);
       
-      // Optional: Show success message
-      alert('Enquiry submitted successfully! We will contact you soon.');
+      // Show success message
+      toast.success('Enquiry submitted successfully!', {
+        description: 'We will get back to you shortly.',
+      });
 
     } catch (error) {
       if (error instanceof Error && 'errors' in error) {
@@ -82,7 +108,9 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
         setErrors(fieldErrors);
       } else {
         console.error('Form submission error:', error);
-        alert('Failed to submit enquiry. Please try again.');
+        toast.error('Failed to submit enquiry', {
+          description: 'Please try again or contact us directly.',
+        });
       }
     } finally {
       setIsSubmitting(false);

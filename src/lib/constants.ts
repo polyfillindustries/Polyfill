@@ -55,6 +55,8 @@ export const FORM_VALIDATION = {
 export const API_MESSAGES = {
   CONTACT_SUCCESS: "Thank you for contacting us! We'll get back to you soon.",
   CONTACT_ERROR: "Something went wrong. Please try again.",
+  QUOTE_SUCCESS: "Thank you for your quote request! We'll be in touch shortly.",
+  QUOTE_ERROR: "Failed to submit quote request. Please try again.",
   FORM_VALIDATION_ERROR: "Please check the form for errors.",
 } as const;
 

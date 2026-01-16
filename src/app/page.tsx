@@ -17,13 +17,13 @@ export default function Home() {
 
     <Hero2 
   video="/videos/vid.mp4"
-  overlayOpacity={0.7}
+  overlayOpacity={0.65}
   className="min-h-[80vh]"
 >
   <div className="flex flex-col font-inter text-white font-medium gap-y-4 items-center justify-center h-full">
-    <h2 className="font-semibold">A SHAKTI POLYMERS UNIT</h2>
-    <h1 className="text-white text-center font-bold text-3xl md:text-5xl"><span className="text-bprimary">POLYFILL</span> INDUSTRIES</h1>
-    <h2 className="text-center md:text-xl font-semibold">Engineered <span className="text-bprimary">POLYPROPYLENE</span> for Everyday Excellence </h2>
+    <h2 className="font-semibold text-sm md:text-lg font-serif ">A SHAKTI POLYMERS UNIT</h2>
+    <h1 className="text-white text-center font-bold  text-3xl md:text-5xl"><span className="text-bprimary">POLYFILL</span> INDUSTRIES</h1>
+    <h2 className="text-center md:text-xl font-bold">Engineered <span className="text-bprimary">POLYPROPYLENE</span> for Everyday Excellence </h2>
   </div>
 </Hero2>
      

@@ -51,21 +51,28 @@ export default async function GalleryPage() {
     }))
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <h1 className="mb-6 text-4xl font-light tracking-tight text-slate-900 sm:text-5xl font-serif">
-            Captured Moments
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg font-light text-slate-500">
-            A visual journey through our processes and creations.
-          </p>
-        </div>
 
-        {/* Gallery Grid */}
-        <GalleryClient images={processedImages} />
+    <div className='bg-black min-h-screen p-3'>
+      <h1 className='text-white font-inter md:mt-10 md:ml-20 font-bold md:text-5xl'>GALLERY</h1>
+      <div>
+
       </div>
     </div>
+    // <div className="min-h-screen bg-white">
+    //   <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
+    //     {/* Header */}
+    //     <div className="mb-16 text-center">
+    //       <h1 className="mb-6 text-4xl font-light tracking-tight text-slate-900 sm:text-5xl font-serif">
+    //         Captured Moments
+    //       </h1>
+    //       <p className="mx-auto max-w-2xl text-lg font-light text-slate-500">
+    //         A visual journey through our processes and creations.
+    //       </p>
+    //     </div>
+
+    //     {/* Gallery Grid */}
+    //     <GalleryClient images={processedImages} />
+    //   </div>
+    // </div>
   )
 }

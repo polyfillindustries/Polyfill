@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Script from 'next/script'
 import { getProductBySlug, getAllProductSlugs } from '@/sanity/lib/queries'
 import { ProductImageCarousel } from '@/components/products/ProductImageCarousel'
 import { ProductsDescription } from '@/components/products/ProductsDescription'
@@ -25,6 +26,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
+    <>
+      {/* Load reCAPTCHA v3 Script */}
+      <Script
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        strategy="lazyOnload"
+      />
+      
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
         {/* Back Button */}
@@ -53,5 +61,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }
