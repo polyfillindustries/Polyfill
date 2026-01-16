@@ -8,9 +8,9 @@ export default function Overview() {
     { text: "Overview", className: "text-bprimary" },
   ];
   return (
-    <section className="relative w-full py-8 md:py-16 lg:py-24 px-1 rounded-2xl md:px-4 bg-white overflow-hidden">
+    <section className="relative w-full py-0 md:py-16 lg:py-24  md:rounded-2xl px-0 md:px-4 bg-white overflow-hidden">
       {/* Background Decorative Element */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-bprimary/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-bprimary/5 md:rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto">
         <div className="relative bg-zinc-900 rounded-lg md:rounded-2xl lg:rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5">
