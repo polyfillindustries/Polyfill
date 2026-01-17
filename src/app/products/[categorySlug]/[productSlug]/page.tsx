@@ -6,20 +6,22 @@ import { ProductsDescription } from '@/components/products/ProductsDescription'
 
 interface ProductPageProps {
   params: Promise<{
-    slug: string
+    categorySlug: string
+    productSlug: string
   }>
 }
 
 export async function generateStaticParams() {
   const slugs = await getAllProductSlugs()
-  return slugs.map((slug) => ({
-    slug: slug,
+  return slugs.map(({ categorySlug, productSlug }) => ({
+    categorySlug: categorySlug,
+    productSlug: productSlug,
   }))
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params
-  const product = await getProductBySlug(slug)
+  const { categorySlug, productSlug } = await params
+  const product = await getProductBySlug(categorySlug, productSlug)
 
   if (!product) {
     notFound()
@@ -37,13 +39,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
         {/* Back Button */}
         <a 
-          href="/products"
+          href={`/products/${categorySlug}`}
           className="inline-flex items-center text-gray-600 hover:text-bprimary mb-8 transition-colors"
         >
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back to Products
+          Back to {product.category.name}
         </a>
 
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">

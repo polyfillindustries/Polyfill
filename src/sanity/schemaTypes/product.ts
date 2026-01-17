@@ -6,6 +6,14 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+      validation: (Rule) => Rule.required(),
+      description: 'Select the category this product belongs to',
+    }),
+    defineField({
       name: 'name',
       title: 'Product Name',
       type: 'string',

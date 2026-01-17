@@ -1,11 +1,11 @@
 
 import { ExploreCards } from '@/components/products/ExploreCards';
-import {getProducts} from '@/sanity/lib/queries';
+import { getCategories } from '@/sanity/lib/queries';
 
 
 export default async function ProductsPage() {
 
-  const products = await getProducts()
+  const categories = await getCategories()
 
 
 
@@ -13,10 +13,11 @@ export default async function ProductsPage() {
     <div className="min-h-screen">
       <div className="flex justify-center mt-5 p-8">
        <h1 className='md:text-5xl text-2xl font-bold font-inter'>
-        Our <span className="text-bprimary">Products</span>
+        Our <span className="text-bprimary">Categories</span>
        </h1>
       </div>
-      <ExploreCards products={products} />
+      <ExploreCards products={categories} />
     </div>
   )
 }
+
