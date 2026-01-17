@@ -24,10 +24,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { quoteFormSchema, type QuoteFormData } from '@/lib/validations';
-
-interface ProductEnquirySheetProps {
-  productName: string;
-}
+import type { ProductEnquirySheetProps } from '@/types';
 
 export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);

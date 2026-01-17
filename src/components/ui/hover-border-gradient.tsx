@@ -3,8 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-
-type Direction = "TOP" | "LEFT" | "BOTTOM" | "RIGHT";
+import type { Direction } from '@/types';
 
 export function HoverBorderGradient({
   children,

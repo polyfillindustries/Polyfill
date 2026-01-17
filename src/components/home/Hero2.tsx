@@ -2,13 +2,7 @@
 
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-
-interface Hero2Props {
-  video: string | { mobile: string; desktop: string };
-  overlayOpacity?: number;
-  className?: string;
-  children?: React.ReactNode;
-}
+import type { Hero2Props } from '@/types'
 
 export const Hero2 = ({ 
   video, 

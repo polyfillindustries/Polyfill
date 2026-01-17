@@ -3,12 +3,7 @@
 import { useState, useMemo } from 'react';
 import { Search, X } from 'lucide-react';
 import { ExploreCards } from './ExploreCards';
-import type { ExploreProduct } from '@/types/product';
-
-interface CategoryProductsListProps {
-  products: ExploreProduct[];
-  categoryName: string;
-}
+import type { CategoryProductsListProps } from '@/types';
 
 export function CategoryProductsList({ products, categoryName }: CategoryProductsListProps) {
   const [searchTerm, setSearchTerm] = useState('');

@@ -1,12 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getCategoryBySlug, getProductsByCategory, getAllCategorySlugs } from '@/sanity/lib/queries'
 import { CategoryProductsList } from '@/components/products/CategoryProductsList'
-
-interface CategoryPageProps {
-  params: Promise<{
-    categorySlug: string
-  }>
-}
+import type { CategoryPageProps } from '@/types'
 
 export async function generateStaticParams() {
   const slugs = await getAllCategorySlugs()

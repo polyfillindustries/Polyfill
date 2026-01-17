@@ -6,18 +6,13 @@ import { X, ChevronLeft, ChevronRight, PanelBottomClose, PanelBottomOpen, Micros
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-
-interface GalleryImage {
-  _id: string
-  title?: string
-  alt?: string
-  date?: string
-  thumbnailUrl: string
-  fullUrl: string
-}
+import type { ProcessedGalleryImage } from '@/types'
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+export default function Gallery({ images }: { images: ProcessedGalleryImage[] }) {
 }
 
 const ParallaxImage = ({ image, index, setSelectedIndex }: { 

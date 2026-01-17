@@ -2,28 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import GalleryClient from "./GalleryClient";
 import Gallery from "./Gallery";
-
-interface GalleryImage {
-  _id: string;
-  title?: string;
-  image: {
-    asset: {
-      _ref: string;
-      _type: string;
-    };
-    alt?: string;
-  };
-  date?: string;
-}
-
-interface ProcessedImage {
-  _id: string;
-  title?: string;
-  alt?: string;
-  date?: string;
-  thumbnailUrl: string;
-  fullUrl: string;
-}
+import type { GalleryImage, ProcessedGalleryImage } from '@/types';
 
 async function getGalleryImages(): Promise<GalleryImage[]> {
   const query = `*[_type == "galleryImage"] | order(date desc) {

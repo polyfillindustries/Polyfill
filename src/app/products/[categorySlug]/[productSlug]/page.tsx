@@ -3,13 +3,7 @@ import Script from 'next/script'
 import { getProductBySlug, getAllProductSlugs } from '@/sanity/lib/queries'
 import { ProductImageCarousel } from '@/components/products/ProductImageCarousel'
 import { ProductsDescription } from '@/components/products/ProductsDescription'
-
-interface ProductPageProps {
-  params: Promise<{
-    categorySlug: string
-    productSlug: string
-  }>
-}
+import type { ProductPageProps } from '@/types'
 
 export async function generateStaticParams() {
   const slugs = await getAllProductSlugs()

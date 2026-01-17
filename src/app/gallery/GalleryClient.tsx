@@ -12,21 +12,13 @@ import {
 import { motion, AnimatePresence } from 'framer-motion'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-
-interface GalleryImage {
-  _id: string
-  title?: string
-  alt?: string
-  date?: string
-  thumbnailUrl: string
-  fullUrl: string
-}
+import type { ProcessedGalleryImage } from '@/types'
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export default function GalleryClient({ images }: { images: GalleryImage[] }) {
+export default function GalleryClient({ images }: { images: ProcessedGalleryImage[] }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
