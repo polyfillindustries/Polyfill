@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { urlFor } from '@/sanity/lib/image';
 import { ArrowUpRight, Box } from 'lucide-react';
 import type { ExploreCardsProps } from '@/types/explorecards';
 import type { ExploreProduct, Category } from '@/types/product';
@@ -31,12 +30,12 @@ export const ExploreCards = ({ products }: ExploreCardsProps) => {
         {products.map((item, index) => {
           const isProd = isProduct(item);
           const linkHref = isProd 
-            ? `/products/${item.category.slug.current}/${item.slug.current}`
-            : `/products/${item.slug.current}`;
+            ? `/categories/${item.category.slug}/${item.slug}`
+            : `/categories/${item.slug}`;
           
-          // For products, use first image; for categories, use the category image
+          // For products and categories, we now have resolved images
           const imageData = isProd 
-            ? item.images?.[0] 
+            ? (item as ExploreProduct).image 
             : (item as Category).image;
           
           const alias = isProd ? (item as ExploreProduct).alias : undefined;
@@ -63,14 +62,16 @@ export const ExploreCards = ({ products }: ExploreCardsProps) => {
 
               {/* Image Container */}
               <div className="relative aspect-square w-full overflow-hidden bg-zinc-50">
-                {imageData?.asset ? (
+                {imageData?.url ? (
                   <>
                     <Image
-                      src={urlFor(imageData.asset).width(600).height(600).url()}
-                      alt={imageData.alt || item.name}
+                      src={imageData.url}
+                      alt={item.name}
                       fill
                       className="object-cover object-bottom transition-transform duration-700 ease-out group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      placeholder={imageData.lqip ? 'blur' : 'empty'}
+                      blurDataURL={imageData.lqip}
                     />
                     {/* Darker gradient overlay on hover */}
                     <div className="absolute inset-0 bg-linear-to-t from-zinc-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

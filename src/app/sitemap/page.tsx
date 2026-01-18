@@ -16,7 +16,7 @@ const sitePages = [
   },
   {
     title: 'Products',
-    href: '/products',
+    href: '/categories',
     description: 'Browse our range of polymer products',
     icon: Package,
   },
@@ -116,7 +116,7 @@ export default function SitemapPage() {
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-bprimary/10 to-bsecondary/10 rounded-full">
             <p className="text-sm text-gray-700">
               Individual product pages can be accessed through the{' '}
-              <Link href="/products" className="font-semibold text-bprimary hover:text-bsecondary transition-colors hover:underline">
+              <Link href="/categories" className="font-semibold text-bprimary hover:text-bsecondary transition-colors hover:underline">
                 Products
               </Link>{' '}
               section

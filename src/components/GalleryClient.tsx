@@ -77,7 +77,7 @@ export default function GalleryClient({ images }: { images: ProcessedGalleryImag
                   />
 
                   {/* DESKTOP OVERLAY ONLY */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hidden md:flex hover:opacity-100 transition-opacity duration-500 flex-col justify-end p-8">
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 hidden md:flex hover:opacity-100 transition-opacity duration-500 flex-col justify-end p-8">
                     <motion.div
                       initial={{ y: 20, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
@@ -172,7 +172,7 @@ export default function GalleryClient({ images }: { images: ProcessedGalleryImag
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black/95"
             onClick={() => setSelectedIndex(null)}
           >
             <button className="absolute right-10 top-10 p-4 bg-white/5 rounded-full">

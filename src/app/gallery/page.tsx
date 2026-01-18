@@ -1,7 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import GalleryClient from "./GalleryClient";
-import Gallery from "./Gallery";
+import GalleryClient from "../../components/GalleryClient";
 import type { GalleryImage, ProcessedGalleryImage } from '@/types';
 
 async function getGalleryImages(): Promise<GalleryImage[]> {
@@ -19,7 +18,7 @@ export default async function GalleryPage() {
   const images = await getGalleryImages();
 
   // Process images on server to generate URLs
-  const processedImages: ProcessedImage[] = images
+  const processedImages: ProcessedGalleryImage[] = images
     .filter((item) => item.image?.asset?._ref)
     .map((item) => ({
       _id: item._id,
@@ -32,7 +31,6 @@ export default async function GalleryPage() {
 
   return (
     <div className="bg-black min-h-screen p-3">
-      {/* Option 1 */}
       <div className="md:px-12 py-2 md:pt-10 mb-5">
         <span className="text-blue-500 font-mono font-medium text-[15px] tracking-[0.5em] uppercase block mb-4">
           Material Archives
@@ -44,9 +42,6 @@ export default async function GalleryPage() {
       <div>
         <GalleryClient images={processedImages} />
       </div>
-
-      {/* Option 2 */}
-      {/* <Gallery images={processedImages}/> */}
     </div>
     // <div className="min-h-screen bg-white">
     //   <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">

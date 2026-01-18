@@ -105,13 +105,13 @@ export default function HeroSlideshow() {
                 </p>
 
                 <div className="flex gap-4">
-                  <Link href="/products">
+                  <Link href="/categories">
                     <HoverBorderGradient
                       containerClassName="rounded-full"
                       as="button"
                       className=" bg-transparent  text-white flex items-center space-x-2"
                     >
-                      <p>Explore Products &rarr;</p>
+                      <p>Explore Categories &rarr;</p>
                     </HoverBorderGradient>
                   </Link>
                 </div>

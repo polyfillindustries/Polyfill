@@ -27,7 +27,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         {/* Back Button */}
         <a 
-          href="/products"
+          href="/categories"
           className="inline-flex items-center text-gray-600 hover:text-bprimary mb-4 transition-colors"
         >
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

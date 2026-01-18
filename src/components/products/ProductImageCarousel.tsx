@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { urlFor } from '@/sanity/lib/image'
 import type { ProductImageCarouselProps } from '@/types/productimage'
 
 export const ProductImageCarousel = ({ images, productName }: ProductImageCarouselProps) => {
@@ -29,11 +28,13 @@ export const ProductImageCarousel = ({ images, productName }: ProductImageCarous
       {/* Main Image */}
       <div className="relative w-full aspect-square bg-gray-100 rounded-lg overflow-hidden group">
         <Image
-          src={urlFor(images[currentIndex].asset).width(800).height(800).url()}
-          alt={images[currentIndex].alt || productName}
+          src={images[currentIndex].url}
+          alt={productName}
           fill
           className="object-cover"
           sizes="(max-width: 1024px) 100vw, 50vw"
+          placeholder={images[currentIndex].lqip ? 'blur' : 'empty'}
+          blurDataURL={images[currentIndex].lqip}
           priority
         />
 
@@ -83,8 +84,8 @@ export const ProductImageCarousel = ({ images, productName }: ProductImageCarous
               }`}
             >
               <Image
-                src={urlFor(image.asset).width(200).height(200).url()}
-                alt={image.alt || `${productName} thumbnail ${index + 1}`}
+                src={image.url}
+                alt={`${productName} thumbnail ${index + 1}`}
                 fill
                 className="object-cover"
                 sizes="25vw"

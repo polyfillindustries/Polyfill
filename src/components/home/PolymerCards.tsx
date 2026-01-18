@@ -43,7 +43,7 @@ export const PolymerCards = () => {
           </h3>
         </div>
         
-        <Link href="/products" className="hidden md:block">
+        <Link href="/categories" className="hidden md:block">
           <HoverBorderGradient
             containerClassName="rounded-full"
             as="button"
@@ -107,7 +107,7 @@ export const PolymerCards = () => {
 
       {/* Mobile-only Explore Button */}
       <div className="mt-8 flex justify-center md:hidden">
-        <Link href="/products">
+        <Link href="/categories">
           <HoverBorderGradient
             containerClassName="rounded-full"
             as="button"

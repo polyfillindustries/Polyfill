@@ -13,7 +13,7 @@ export default async function ProductsPage() {
     <div className="min-h-screen">
       <div className="flex justify-center mt-5 p-8">
        <h1 className='md:text-5xl text-2xl font-bold font-inter'>
-        Our <span className="text-bprimary">Categories</span>
+        Polymer <span className="text-bprimary">Families</span>
        </h1>
       </div>
       <ExploreCards products={categories} />

@@ -1,6 +1,6 @@
-import type { ProductImage } from './product'
+import type { ResolvedImage } from './product'
 
 export interface ProductImageCarouselProps {
-  images: ProductImage[]
+  images: ResolvedImage[]
   productName: string
 }

@@ -1,7 +1,7 @@
 // Central export for all types - improves import organization
 
 // Product types
-export type { ProductImage, ExploreProduct, ProductDetail, Product, Category, CategoryRef } from './product'
+export type { ProductImage, ResolvedImage, ExploreProduct, ProductDetail, Product, Category, CategoryRef } from './product'
 export type { ExploreCardsProps } from './explorecards'
 export type { ProductsDescriptionProps } from './productdescription'
 export type { ProductImageCarouselProps } from './productimage'
