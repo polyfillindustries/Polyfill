@@ -9,23 +9,23 @@ import { HoverBorderGradient } from "../ui/hover-border-gradient";
 const items = [
   { 
     img: "img1.jpg", 
-    title: "Light Grey PP", 
-    href: "/products/light-grey-pp" 
+    title: "Engineering Polymers", 
+    href: "/products/engineering-polymers" 
   },
   { 
     img: "img2.jpg", 
-    title: "Silver Gol", 
-    href: "/products/silver-gol" 
+    title: "Polypropylene (PP)", 
+    href: "/products/polypropylene" 
   },
   { 
     img: "img3.jpg", 
-    title: "Milky Gol", 
-    href: "/products/milky-gol" 
+    title: "Polypropylene Copolymer (PPCP)", 
+    href: "/products/polypropylene-copolymer" 
   },
   { 
     img: "img4.jpg", 
-    title: "Natural Gol", 
-    href: "/products/natural-gol" 
+    title: "High Density (HD)", 
+    href: "/products/high-density" 
   },
 ];
 
@@ -43,7 +43,7 @@ export const PolymerCards = () => {
           </h3>
         </div>
         
-        <Link href="/categories" className="hidden md:block">
+        <Link href="/products" className="hidden md:block">
           <HoverBorderGradient
             containerClassName="rounded-full"
             as="button"
@@ -89,7 +89,7 @@ export const PolymerCards = () => {
               <div className="absolute inset-0 md:p-6 pb-14 p-3 flex flex-col justify-end">
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                  
-                  <h3 className="text-md md:text-2xl font-bold text-white -mb-5 md:mb-2 leading-tight">
+                  <h3 className="text-md md:text-2xl font-bold text-white -mb-5 md:mb-5 leading-tight">
                     {item.title}
                   </h3>
                 
@@ -107,7 +107,7 @@ export const PolymerCards = () => {
 
       {/* Mobile-only Explore Button */}
       <div className="mt-8 flex justify-center md:hidden">
-        <Link href="/categories">
+        <Link href="/products">
           <HoverBorderGradient
             containerClassName="rounded-full"
             as="button"

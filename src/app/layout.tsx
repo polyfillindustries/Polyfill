@@ -55,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} ${dmSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-         <FloatingWhatsapp/>
+        <FloatingWhatsapp/>
         <Navbar/>
         <main className="flex-1">
           {children}

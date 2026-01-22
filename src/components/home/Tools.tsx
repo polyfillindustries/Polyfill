@@ -68,7 +68,7 @@ const ToolsAndTech = () => {
             {/* Image between icon and heading - visible only on md+ screens */}
             <div className="hidden md:block relative w-full mt-17 h-35 my-4 rounded-xl overflow-hidden z-10">
               <Image
-                src="/hero/img5.JPG"
+                src="/extra/img2.jpg"
                 alt="Infrastructure"
                 fill
                 className="object-cover"
@@ -132,7 +132,7 @@ const ToolsAndTech = () => {
             <Cpu className="w-6 h-6 sm:w-8 sm:h-8 text-white group-hover:scale-110 transition-transform" />
              <div className="hidden md:block relative w-full mt-10 h-45 my-4 rounded-xl overflow-hidden z-10">
               <Image
-                src="/hero/img5.JPG"
+                src="/extra/img1.jpg"
                 alt="Infrastructure"
                 fill
                 className="object-cover"

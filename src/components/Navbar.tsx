@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { NAV_LINKS, CONTACT_INFO } from '@/lib/constants';
 import { Menu, Phone, Mail } from 'lucide-react';
 import {
@@ -16,6 +17,26 @@ import {
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+
+  // Prefetch important routes on idle (works on mobile + desktop)
+  useEffect(() => {
+    const prefetchRoutes = () => {
+      // Prefetch all navigation routes for instant page transitions
+      router.prefetch('/products');
+      router.prefetch('/about-us');
+      router.prefetch('/gallery');
+      router.prefetch('/contact-us');
+    };
+
+    // Use requestIdleCallback for better performance (runs when browser is idle)
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(prefetchRoutes);
+    } else {
+      // Fallback for browsers that don't support requestIdleCallback
+      setTimeout(prefetchRoutes, 2000);
+    }
+  }, [router]);
 
   // Close mobile menu when screen size increases to desktop
   useEffect(() => {
@@ -43,7 +64,7 @@ export const Navbar = () => {
             <span className="text-baccent">|</span>
             {/* Social Icons */}
             <div className="flex items-center gap-3">
-              <Link href={process.env.NEXT_PUBLIC_CATALOG_URL || '#'} className='hover:text-baccent'>Product Catalogue</Link>
+              <Link target='_blank' href={process.env.NEXT_PUBLIC_CATALOG_URL || '#'} className='hover:text-baccent'>Product Catalog</Link>
               {/* {SOCIAL_LINKS.map((social) => (
                 <a 
                   key={social.name}
@@ -120,6 +141,7 @@ export const Navbar = () => {
               <Link
                 key={link.name}
                 href={link.href}
+                prefetch={true}
                 className="font-inter text-bgray hover:text-bprimary transition-colors duration-200 font-medium text-lg"
               >
                 {link.name}
@@ -158,6 +180,7 @@ export const Navbar = () => {
                   <Link
                     key={link.name}
                     href={link.href}
+                    prefetch={true}
                     onClick={() => setIsMenuOpen(false)}
                     className="block font-inter text-bgray hover:text-bprimary transition-colors duration-200 font-medium text-lg py-3 px-4 rounded-lg hover:bg-bprimary/5"
                   >

@@ -155,7 +155,9 @@ import type { ExploreProduct, ProductDetail, Category } from "@/types/product"
  */
 const CACHE_CONFIG = {
   cache: 'force-cache' as const,
-  next: { tags: ['products', 'categories'] }
+  next: { 
+    revalidate: 3600, // Revalidate every hour
+    tags: ['products', 'categories'] }
 };
 
 // ============ CATEGORY QUERIES ============

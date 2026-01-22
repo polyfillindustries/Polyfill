@@ -28,7 +28,7 @@ export default function AboutUs() {
     },
     {
       name: "Fresh PP Granules",
-      image:  "/hero/img6.JPG",
+      image: "/hero/img6.JPG",
     },
     {
       name: "Recycled PP Granules",
@@ -47,19 +47,16 @@ export default function AboutUs() {
     <div className="bg-white font-inter selection:bg-bprimary/10">
       {/* --- HERO SECTION --- */}
       <section className="relative pt-12 pb-8 md:pt-24 md:pb-20 px-4 max-w-7xl mx-auto text-center">
-       
         <div className="flex  justify-center">
           <TypewriterEffectSmooth words={words} className="mx-3" />
         </div>
-         <motion.div
+        <motion.div
           {...fadeIn}
           className="inline-flex items-center justify-center gap-2.5 px-4 py-2 bg-zinc-50 border border-bgray rounded-full mx-auto mb-6 shadow-sm whitespace-nowrap"
         >
-         
-
           {/* Logo & Text Wrapper to ensure perfect horizontal alignment */}
           <div className="flex items-center gap-1">
-             <span className="text-zinc-800 text-sm font-medium">A Unit of</span>
+            <span className="text-zinc-800 text-sm font-medium">A Unit of</span>
             <span className="text-red-700 font-bold text-sm md:text-base tracking-tight ">
               Shakti Polymers
             </span>
@@ -77,8 +74,9 @@ export default function AboutUs() {
           className="mt-4 md:mt-6 text-zinc-600 text-base md:text-lg lg:text-xl max-w-4xl font-medium mx-auto leading-relaxed px-2"
         >
           Established in{" "}
-          <span className="text-zinc-900 font-semibold">1988</span>, Polyfill (formerly Shakti Polymers) has grown into a leading name in
-          the plastic granules industry under the guidance of{" "}
+          <span className="text-zinc-900 font-semibold">1988</span>, Polyfill
+          (formerly Shakti Polymers) has grown into a leading name in the
+          plastic granules industry under the guidance of{" "}
           <span className="text-zinc-900 font-semibold">
             Mr. Kashmiri Lal Jindal
           </span>
@@ -194,12 +192,14 @@ export default function AboutUs() {
           </motion.div>
 
           <div className="relative aspect-square md:aspect-video lg:aspect-square bg-zinc-800 rounded-2xl md:rounded-3xl overflow-hidden border border-white/10">
-            {/* Replace with your factory or product image */}
-            <div className="absolute inset-0 bg-linear-to-br from-bprimary/20 to-transparent flex items-center justify-center">
-              <p className="text-white/20 font-bold text-3xl md:text-6xl uppercase tracking-tighter">
-                Manufacturing
-              </p>
-            </div>
+            <Image
+              src="/extra/img1.jpg"
+              alt="Manufacturing"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-linear-to-br from-bprimary/20 to-transparent" />
           </div>
         </div>
       </section>
@@ -216,7 +216,7 @@ export default function AboutUs() {
             Mission
           </h3>
           <p className="text-sm md:text-base text-zinc-600 leading-relaxed">
-            Our mission at Shakti Polymers is to deliver high-quality plastic
+            Our mission at Polyfill (Shakti Polymers) is to deliver high-quality plastic
             granules through advanced manufacturing, strict quality control, and
             responsible polymer recycling practices. We are committed to
             sustainability by reducing plastic waste, promoting resource
@@ -235,7 +235,7 @@ export default function AboutUs() {
             <Eye className="text-bsecondary w-5 h-5 md:w-6 md:h-6" /> Our Vision
           </h3>
           <p className="text-sm md:text-base text-zinc-600 leading-relaxed">
-            Our vision at Shakti Polymers is to emerge as a leading and reliable
+            Our vision at Polyfill (Shakti Polymers) is to emerge as a leading and reliable
             force in the polymer manufacturing and recycling industry, known for
             technical excellence, consistent quality, and ethical operations. We
             aim to set industry benchmarks by continuously upgrading our

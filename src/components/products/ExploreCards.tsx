@@ -30,8 +30,8 @@ export const ExploreCards = ({ products }: ExploreCardsProps) => {
         {products.map((item, index) => {
           const isProd = isProduct(item);
           const linkHref = isProd 
-            ? `/categories/${item.category.slug}/${item.slug}`
-            : `/categories/${item.slug}`;
+            ? `/products/${item.category.slug}/${item.slug}`
+            : `/products/${item.slug}`;
           
           // For products and categories, we now have resolved images
           const imageData = isProd 

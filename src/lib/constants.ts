@@ -1,6 +1,6 @@
 export const NAV_LINKS = [
   { name: 'Home', href: '/' },
-  { name: 'Products', href: '/categories' },
+  { name: 'Products', href: '/products' },
   { name: 'About Us', href: '/about-us' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Contact Us', href: '/contact-us' },
@@ -27,7 +27,7 @@ export const FOOTER_LINKS = {
     { name: 'Contact Form', href: '/contact-us' },
   ],
   products: [
-    { name: 'Products', href: '/categories' },
+    { name: 'Products', href: '/products' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Site Map', href: '/sitemap' },
     {name : 'Catalog ', href: '/' },

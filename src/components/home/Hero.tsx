@@ -105,7 +105,7 @@ export default function HeroSlideshow() {
                 </p>
 
                 <div className="flex gap-4">
-                  <Link href="/categories">
+                  <Link href="/products">
                     <HoverBorderGradient
                       containerClassName="rounded-full"
                       as="button"
