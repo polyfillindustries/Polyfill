@@ -1,3 +1,3 @@
-Deployed on Netlify
-Domain purchased from Domain Jerry 
-DNS managed by Cloudflare
+* Deployed on Netlify
+* Domain purchased from Domain Jerry 
+* DNS managed by Cloudflare
