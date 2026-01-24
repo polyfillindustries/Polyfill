@@ -1,17 +1,3 @@
-// Form-related types
-export interface ContactFormData {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-}
+// Form-related types (re-exported from Zod schemas)
+export type { ContactFormData, QuoteFormData } from '@/lib/validations';
 
-export interface EnquiryFormData {
-  name: string;
-  email: string;
-  phone: string;
-  companyName: string;
-  quantity: string;
-  message: string;
-}

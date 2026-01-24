@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getCategoryBySlug, getProductsByCategory, getAllCategorySlugs } from '@/sanity/lib/queries'
-import { CategoryProductsList } from '@/components/products/CategoryProductsList'
+import { CategoryProductsListClient } from '@/components/products/CategoryProductsListClient'
 import type { CategoryPageProps } from '@/types'
 
 export async function generateStaticParams() {
@@ -45,7 +45,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </div>
       
-      <CategoryProductsList products={products} categoryName={category.name} />
+      <CategoryProductsListClient
+        products={products}
+        categoryName={category.name}
+        categorySlug={categorySlug}
+      />
     </div>
   )
 }

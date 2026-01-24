@@ -38,9 +38,9 @@ export default function Home() {
 
       <PolymerCards />
 
-      <div className="  space-y-10">
+      {/* <div className="  space-y-10">
         <TimelineDemo />
-      </div>
+      </div> */}
 
       <div className=" space-y-15">
         <Counter />

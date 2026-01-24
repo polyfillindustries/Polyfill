@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
 import { tooltipVariants } from '@/lib/animations/floatingButtons';
-
-interface TooltipProps {
-  text: string;
-}
+import type { TooltipProps } from '@/types/components';
 
 export function Tooltip({ text }: TooltipProps) {
   return (

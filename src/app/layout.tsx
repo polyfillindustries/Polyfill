@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingWhatsapp from "@/components/FloatingWhatsapp";
+import { ClientProviders } from "@/components/ClientProviders";
 
 // Primary font
 const inter = Inter({
@@ -55,13 +56,15 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} ${dmSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <FloatingWhatsapp/>
-        <Navbar/>
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer/>
-        <Toaster richColors position="bottom-right" />
+        <ClientProviders>
+          <FloatingWhatsapp/>
+          <Navbar/>
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer/>
+          <Toaster richColors position="bottom-right" />
+        </ClientProviders>
       </body>
     </html>
   );

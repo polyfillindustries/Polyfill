@@ -1,18 +1,7 @@
-import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import GalleryClient from "../../components/GalleryClient";
-import type { GalleryImage, ProcessedGalleryImage } from '@/types';
-
-async function getGalleryImages(): Promise<GalleryImage[]> {
-  const query = `*[_type == "galleryImage"] | order(date desc) {
-    _id,
-    title,
-    image,
-    date
-  }`;
-
-  return client.fetch(query);
-}
+import type { ProcessedGalleryImage } from '@/types';
+import { getGalleryImages } from '@/sanity/lib/queries';
 
 export default async function GalleryPage() {
   const images = await getGalleryImages();

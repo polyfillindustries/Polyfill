@@ -53,12 +53,23 @@ export const Footer = () => {
             <ul className="space-y-3">
               {FOOTER_LINKS.products.map((link) => (
                 <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className="text-gray-300 hover:text-baccent transition-colors font-inter text-sm"
-                  >
-                    {link.name}
-                  </Link>
+                  {link.name === 'Catalog ' ? (
+                    <a 
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-baccent transition-colors font-inter text-sm"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link 
+                      href={link.href}
+                      className="text-gray-300 hover:text-baccent transition-colors font-inter text-sm"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
