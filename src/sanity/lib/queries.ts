@@ -156,8 +156,8 @@ import type { ExploreProduct, ProductDetail, Category } from "@/types/product"
 const CACHE_CONFIG = {
   cache: 'force-cache' as const,
   next: { 
-    revalidate: 86400, // Revalidate every day
-    tags: ['products', 'categories'] }
+    revalidate: 60 * 60 * 24 * 14, // Revalidate every 2 weeks
+    tags: ['products', 'categories', 'gallery'] }
 };
 
 // ============ CATEGORY QUERIES ============
@@ -318,6 +318,24 @@ export async function getAllProductSlugs(): Promise<Array<{ categorySlug: string
   try {
     return await client.fetch(query, {}, { cache: 'force-cache' })
   } catch (error) {
+    return []
+  }
+}
+
+// ============ GALLERY QUERIES ============
+
+export async function getGalleryImages(): Promise<import('@/types/gallery').GalleryImage[]> {
+  const query = `*[_type == "galleryImage" && !(_id in path("drafts.**"))] | order(date desc) {
+    _id,
+    title,
+    image,
+    date
+  }`
+
+  try {
+    return await client.fetch(query, {}, CACHE_CONFIG)
+  } catch (error) {
+    console.error('Error fetching gallery images:', error)
     return []
   }
 }

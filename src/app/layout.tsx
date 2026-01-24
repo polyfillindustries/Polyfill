@@ -5,6 +5,9 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import FloatingWhatsapp from "@/components/FloatingWhatsapp";
+import { ClientProviders } from "@/components/ClientProviders";
+import { baseMetadata } from "@/lib/metadata";
+import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/structuredData";
 
 // Primary font
 const inter = Inter({
@@ -40,10 +43,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Polyfill Industries",
-  description: "Engineered POLYPROPYLENE for Everyday Excellence",
-};
+export const metadata: Metadata = baseMetadata;
 
 export default function RootLayout({
   children,
@@ -52,16 +52,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              organizationSchema,
+              websiteSchema,
+              localBusinessSchema,
+            ]),
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${playfair.variable} ${dmSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <FloatingWhatsapp/>
-        <Navbar/>
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer/>
-        <Toaster richColors position="bottom-right" />
+        <ClientProviders>
+          <FloatingWhatsapp/>
+          <Navbar/>
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer/>
+          <Toaster richColors position="bottom-right" />
+        </ClientProviders>
       </body>
     </html>
   );

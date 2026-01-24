@@ -5,19 +5,33 @@ import Script from "next/script";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Get Expert Polymer Solutions | Polyfill Industries",
+  title: "Contact Us - Get Quote for Polypropylene & BOPP Granules | Polyfill Industries",
   description:
-    "Get in touch with Polyfill Industries for your polymer product needs in Delhi. Call us, email, or visit our facility. We're here to help with expert guidance and quality solutions.",
+    "Contact Polyfill Industries for bulk orders, pricing, and product inquiries. Located in Bawana Industrial Area, Delhi. Call +91 9810355151 or email polyfillindustries@gmail.com",
   keywords: [
+    "contact PP manufacturer",
+    "PP supplier contact",
+    "get PP quote",
+    "bulk PP order",
+    "polypropylene price inquiry",
+    "BOPP granules supplier contact Delhi",
+    "polymer manufacturer contact India",
     "contact polyfill industries",
     "polymer products inquiry",
     "get quote",
     "polymer solutions delhi",
   ],
   openGraph: {
-    title: "Contact Polyfill Industries - Get In Touch",
+    title: "Contact Polyfill Industries - Get a Quote",
     description:
-      "Reach out to us for consultations, quotes, or any queries about our polymer products and solutions.",
+      "Get in touch for bulk orders and pricing. Located in Bawana, Delhi, India. Expert polymer solutions.",
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Polyfill Industries',
+    description: 'Get in touch for bulk orders and pricing.',
+    images: ['/og-image.png'],
   },
 };
 

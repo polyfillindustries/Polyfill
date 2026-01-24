@@ -1,18 +1,25 @@
-import { client } from "@/sanity/lib/client";
+import type { Metadata } from 'next';
 import { urlFor } from "@/sanity/lib/image";
 import GalleryClient from "../../components/GalleryClient";
-import type { GalleryImage, ProcessedGalleryImage } from '@/types';
+import type { ProcessedGalleryImage } from '@/types';
+import { getGalleryImages } from '@/sanity/lib/queries';
 
-async function getGalleryImages(): Promise<GalleryImage[]> {
-  const query = `*[_type == "galleryImage"] | order(date desc) {
-    _id,
-    title,
-    image,
-    date
-  }`;
-
-  return client.fetch(query);
-}
+export const metadata: Metadata = {
+  title: 'Gallery - Manufacturing Facility & Production Process',
+  description: 'View our state-of-the-art manufacturing facility, production processes, quality control procedures, and finished products. See how we manufacture premium polypropylene granules.',
+  keywords: 'polypropylene manufacturing, PP production facility, BOPP recycling plant, polymer manufacturing process, plastic granules production, PP factory India, manufacturing facility Delhi',
+  openGraph: {
+    title: 'Manufacturing Gallery - Polyfill Industries',
+    description: 'Explore our modern production facility and quality manufacturing processes.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Manufacturing Gallery - Polyfill Industries',
+    description: 'Explore our modern production facility.',
+    images: ['/og-image.png'],
+  },
+};
 
 export default async function GalleryPage() {
   const images = await getGalleryImages();

@@ -24,7 +24,8 @@ export async function POST(request: NextRequest) {
       // Revalidate all product and category caches
       revalidateTag('products', 'default')
       revalidateTag('categories', 'default')
-      console.log('✅ Revalidated all tags: products, categories')
+      revalidateTag('gallery', 'default')
+      console.log('✅ Revalidated all tags: products, categories, gallery')
     }
 
     return NextResponse.json({ 

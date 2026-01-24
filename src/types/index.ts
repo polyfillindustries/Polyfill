@@ -27,7 +27,7 @@ export type {
 } from './pages'
 
 // Form types
-export type { ContactFormData, EnquiryFormData } from './forms'
+export type { ContactFormData, QuoteFormData } from './forms'
 
 // Gallery types
 export type { GalleryImage, ProcessedGalleryImage } from './gallery'

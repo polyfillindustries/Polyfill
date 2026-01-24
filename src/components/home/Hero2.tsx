@@ -39,6 +39,7 @@ export const Hero2 = ({
           loop
           muted
           playsInline
+          preload="auto"
           poster="/hero-poster.png"
           className="w-full h-full object-cover md:hidden"
         >
@@ -51,6 +52,7 @@ export const Hero2 = ({
           loop
           muted
           playsInline
+          preload="auto"
           poster="/hero-poster.png"
           className="hidden md:block w-full h-full object-cover"
         >

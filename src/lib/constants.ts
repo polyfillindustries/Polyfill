@@ -1,3 +1,5 @@
+import { ta } from "zod/v4/locales";
+
 export const NAV_LINKS = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
@@ -29,8 +31,8 @@ export const FOOTER_LINKS = {
   products: [
     { name: 'Products', href: '/products' },
     { name: 'Gallery', href: '/gallery' },
-    { name: 'Site Map', href: '/sitemap' },
-    {name : 'Catalog ', href: '/' },
+    // { name: 'Site Map', href: '/sitemap.xml' },
+    {name : 'Catalog ', href: process.env.NEXT_PUBLIC_CATALOG_URL || '#' },
   ],
 };
 

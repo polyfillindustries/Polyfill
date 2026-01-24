@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import {
   X,
@@ -26,26 +26,26 @@ export default function GalleryClient({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleNext = (e: React.MouseEvent) => {
+  const handleNext = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedIndex !== null && selectedIndex < images.length - 1) {
       setSelectedIndex(selectedIndex + 1);
     }
-  };
+  }, [selectedIndex, images.length]);
 
-  const handlePrev = (e: React.MouseEvent) => {
+  const handlePrev = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedIndex !== null && selectedIndex > 0) {
       setSelectedIndex(selectedIndex - 1);
     }
-  };
+  }, [selectedIndex]);
 
   return (
     <div className="w-full bg-black min-h-screen">
       {/* TOGGLE BUTTON */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="fixed bottom-27 md:bottom-25 right-3.5 md:right-7 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
+        className="fixed bottom-24.5 md:bottom-24.5 left-3.5 md:right-7 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
       >
         {isSidebarOpen ? (
           <PanelRightClose className="w-5 h-5" />
@@ -77,6 +77,7 @@ export default function GalleryClient({
                     fill
                     className="object-cover transition-all duration-1000 scale-[1.05] hover:scale-100 brightness-90 hover:brightness-110"
                     sizes="(max-width: 1400px) 80vw, 1000px"
+                    loading={index < 2 ? "eager" : "lazy"}
                     priority={index < 2}
                   />
 
@@ -169,6 +170,7 @@ export default function GalleryClient({
                       fill
                       className="object-cover grayscale hover:grayscale-0 transition-all"
                       sizes="100px"
+                      loading="lazy"
                     />
                   </div>
                 ))}

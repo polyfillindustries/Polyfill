@@ -9,8 +9,8 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 60 * 1000, // 1 hour - catalog data rarely changes
-            gcTime: 24 * 60 * 60 * 1000, // 24 hours in memory
+            staleTime: 7 * 24 * 60 * 60 * 1000, // 7 days - session cache
+            gcTime: 7 * 24 * 60 * 60 * 1000, // 7 days in memory
             refetchOnWindowFocus: false,
             retry: 1,
           },

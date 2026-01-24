@@ -1,13 +1,32 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation'
 import { getCategoryBySlug, getProductsByCategory, getAllCategorySlugs } from '@/sanity/lib/queries'
-import { CategoryProductsList } from '@/components/products/CategoryProductsList'
+import { CategoryProductsListClient } from '@/components/products/CategoryProductsListClient'
 import type { CategoryPageProps } from '@/types'
+import { generateCategoryMetadata } from '@/lib/metadata'
 
 export async function generateStaticParams() {
   const slugs = await getAllCategorySlugs()
   return slugs.map((slug) => ({
     categorySlug: slug,
   }))
+}
+
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+  const { categorySlug } = await params
+  const category = await getCategoryBySlug(categorySlug)
+  
+  if (!category) {
+    return {
+      title: 'Category Not Found',
+    }
+  }
+
+  return generateCategoryMetadata(
+    category.name,
+    category.description || `Explore our ${category.name} products. Premium quality polypropylene granules and polymers.`,
+    categorySlug
+  )
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -45,7 +64,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </div>
       
-      <CategoryProductsList products={products} categoryName={category.name} />
+      <CategoryProductsListClient
+        products={products}
+        categoryName={category.name}
+        categorySlug={categorySlug}
+      />
     </div>
   )
 }

@@ -1,8 +1,9 @@
 'use client';
 
-import { useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from './QueryKeys';
 import { getCategories, getProducts } from '@/sanity/lib/queries';
+import type { ExploreProduct } from '@/types/product';
 
 /**
  * Hook to prefetch categories and first 4 products
@@ -32,4 +33,20 @@ export function usePrefetchCategories() {
   };
 
   return { prefetchCategories };
+}
+
+export function useCategoryProductsCache(
+  categorySlug: string,
+  initialProducts: ExploreProduct[]
+) {
+  return useQuery({
+    queryKey: QUERY_KEYS.PRODUCTS_BY_CATEGORY(categorySlug),
+    queryFn: async () => initialProducts,
+    initialData: initialProducts,
+    staleTime: 7 * 24 * 60 * 60 * 1000,
+    gcTime: 7 * 24 * 60 * 60 * 1000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
 }
