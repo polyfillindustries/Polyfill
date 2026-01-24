@@ -45,7 +45,7 @@ export default function GalleryClient({
       {/* TOGGLE BUTTON */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="fixed bottom-27 md:bottom-25 right-3.5 md:right-7 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
+        className="fixed bottom-24.5 md:bottom-24.5 left-3.5 md:right-7 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
       >
         {isSidebarOpen ? (
           <PanelRightClose className="w-5 h-5" />

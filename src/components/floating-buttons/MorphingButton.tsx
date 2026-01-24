@@ -75,6 +75,7 @@ export function MorphingButton({
       {/* Icon button - visible after morphing */}
       <motion.button
         onClick={onClick}
+        initial={{ opacity: 0, scale: 0.5 }}
         animate={{
           opacity: !showTooltip || isMorphing ? 1 : 0,
           scale: !showTooltip || isMorphing ? 1 : 0.5,
