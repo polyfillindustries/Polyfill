@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY || '';
+const INDEXNOW_KEY = '89bbd86f646a403fb4257b8fcd363f2e';
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindia.com';
 
 /**
