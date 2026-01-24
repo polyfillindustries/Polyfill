@@ -1,11 +1,10 @@
 "use client";
 import {
-  useMotionValueEvent,
   useScroll,
   useTransform,
   motion,
 } from "motion/react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { TimelineEntry } from '@/types';
 
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
