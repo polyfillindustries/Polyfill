@@ -1,9 +1,11 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation'
 import Script from 'next/script'
 import { getProductBySlug, getAllProductSlugs } from '@/sanity/lib/queries'
 import { ProductImageCarousel } from '@/components/products/ProductImageCarousel'
 import { ProductsDescription } from '@/components/products/ProductsDescription'
 import type { ProductPageProps } from '@/types'
+import { generateProductMetadata } from '@/lib/metadata'
 
 export async function generateStaticParams() {
   const slugs = await getAllProductSlugs()
@@ -11,6 +13,24 @@ export async function generateStaticParams() {
     categorySlug: categorySlug,
     productSlug: productSlug,
   }))
+}
+
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { categorySlug, productSlug } = await params
+  const product = await getProductBySlug(categorySlug, productSlug)
+  
+  if (!product) {
+    return {
+      title: 'Product Not Found',
+    }
+  }
+
+  return generateProductMetadata(
+    product.name,
+    product.category.name,
+    product.description,
+    `${categorySlug}/${productSlug}`
+  )
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import {
   X,
@@ -26,19 +26,19 @@ export default function GalleryClient({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleNext = (e: React.MouseEvent) => {
+  const handleNext = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedIndex !== null && selectedIndex < images.length - 1) {
       setSelectedIndex(selectedIndex + 1);
     }
-  };
+  }, [selectedIndex, images.length]);
 
-  const handlePrev = (e: React.MouseEvent) => {
+  const handlePrev = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedIndex !== null && selectedIndex > 0) {
       setSelectedIndex(selectedIndex - 1);
     }
-  };
+  }, [selectedIndex]);
 
   return (
     <div className="w-full bg-black min-h-screen">
@@ -77,6 +77,7 @@ export default function GalleryClient({
                     fill
                     className="object-cover transition-all duration-1000 scale-[1.05] hover:scale-100 brightness-90 hover:brightness-110"
                     sizes="(max-width: 1400px) 80vw, 1000px"
+                    loading={index < 2 ? "eager" : "lazy"}
                     priority={index < 2}
                   />
 
@@ -169,6 +170,7 @@ export default function GalleryClient({
                       fill
                       className="object-cover grayscale hover:grayscale-0 transition-all"
                       sizes="100px"
+                      loading="lazy"
                     />
                   </div>
                 ))}

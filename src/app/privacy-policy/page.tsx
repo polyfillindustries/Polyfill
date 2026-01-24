@@ -1,4 +1,14 @@
+import type { Metadata } from 'next';
 import { Shield, Mail, Phone, User, Lock, Eye } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy - Polyfill Industries',
+  description: 'Read our privacy policy to understand how we collect, use, and protect your personal information when you interact with Polyfill Industries.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function PrivacyPolicyPage() {
   return (

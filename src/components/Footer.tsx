@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { COMPANY_INFO, CONTACT_INFO, FOOTER_LINKS} from '@/lib/constants';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import { env } from 'process';
 
 export const Footer = () => {
   return (
@@ -19,6 +18,7 @@ export const Footer = () => {
                 alt="Polyfill Logo" 
                 width={120} 
                 height={48}
+                loading="lazy"
                 className="h-8 w-auto brightness-0 invert sm:h-10 md:h-12"
               />
             </Link>

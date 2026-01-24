@@ -15,6 +15,25 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About Us - Leading Polypropylene Manufacturer Since Foundation',
+  description: 'Polyfill Industries, a unit of Shakti Polymers, is a leading manufacturer of polypropylene granules, BOPP recycled polymers, and engineering plastics. Monthly capacity: 1,200 tons. Based in Delhi, India.',
+  keywords: 'about Polyfill Industries, Shakti Polymers, PP manufacturer company, polymer manufacturing company India, BOPP recycling company, plastic granules manufacturer Delhi, established polymer manufacturer',
+  openGraph: {
+    title: 'About Polyfill Industries - Premium Polymer Manufacturer',
+    description: 'Leading manufacturer of polypropylene and BOPP granules with 1,200 tons monthly capacity.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Polyfill Industries',
+    description: 'Leading manufacturer of polypropylene and BOPP granules.',
+    images: ['/og-image.png'],
+  },
+};
+
 export default function AboutUs() {
   const words = [
     { text: "About" },

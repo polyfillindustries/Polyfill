@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -38,7 +38,7 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validateForm = (): boolean => {
+  const validateForm = useCallback((): boolean => {
     try {
       contactFormSchema.parse(formData);
       setErrors({});
@@ -55,7 +55,7 @@ export default function ContactForm() {
       setErrors(newErrors);
       return false;
     }
-  };
+  }, [formData]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -109,7 +109,7 @@ export default function ContactForm() {
     }
   };
 
-  const handleInputChange = (field: keyof ContactFormData, value: string) => {
+  const handleInputChange = useCallback((field: keyof ContactFormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {
@@ -120,7 +120,7 @@ export default function ContactForm() {
     if (field === "message" && value.length > 0 && value.length < 10) {
       setErrors((prev) => ({ ...prev, message: "Message must be at least 10 characters" }));
     }
-  };
+  }, [errors]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">

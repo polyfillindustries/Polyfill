@@ -1,4 +1,14 @@
+import type { Metadata } from 'next';
 import { FileText, AlertCircle, Package, Truck, IndianRupee, Shield, Scale, FileCheck } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions - Polyfill Industries',
+  description: 'Read our terms and conditions for using our website and purchasing our polypropylene products. Understand your rights and responsibilities.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function TermsAndConditionsPage() {
   return (
