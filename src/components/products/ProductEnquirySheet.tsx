@@ -71,7 +71,7 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
       const validatedData = quoteFormSchema.parse(dataToValidate);
 
       // Send to API endpoint
-      const response = await fetch('/api/quote', {
+      const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
