@@ -102,7 +102,6 @@ export default function ContactForm() {
       });
       toast.success(result.message || API_MESSAGES.CONTACT_SUCCESS);
     } catch (error) {
-      console.error("Error submitting form:", error);
       toast.error(error instanceof Error ? error.message : API_MESSAGES.CONTACT_ERROR);
     } finally {
       setIsSubmitting(false);

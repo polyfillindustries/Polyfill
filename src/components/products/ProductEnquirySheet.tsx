@@ -104,7 +104,6 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
         });
         setErrors(fieldErrors);
       } else {
-        console.error('Form submission error:', error);
         toast.error('Failed to submit enquiry', {
           description: 'Please try again or contact us directly.',
         });

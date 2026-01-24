@@ -17,15 +17,11 @@ export async function POST(request: NextRequest) {
     const tag = request.nextUrl.searchParams.get('tag')
     
     if (tag) {
-      // Revalidate specific tag
       revalidateTag(tag, 'default')
-      console.log(`✅ Revalidated tag: ${tag}`)
     } else {
-      // Revalidate all product and category caches
       revalidateTag('products', 'default')
       revalidateTag('categories', 'default')
       revalidateTag('gallery', 'default')
-      console.log('✅ Revalidated all tags: products, categories, gallery')
     }
 
     return NextResponse.json({ 

@@ -47,7 +47,6 @@ export async function withErrorHandling(handler: () => Promise<NextResponse>): P
   try {
     return await handler();
   } catch (error: unknown) {
-    console.error('API Error:', error);
     const errorMessage = error instanceof Error ? error.message : "Internal server error";
     return createErrorResponse({
       error: errorMessage,

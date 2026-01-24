@@ -50,7 +50,6 @@ export async function sendEmail({
 
     return data;
   } catch (error) {
-    console.error('Email sending error:', error);
     throw new Error('Failed to send email');
   }
 }

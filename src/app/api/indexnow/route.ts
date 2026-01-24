@@ -70,7 +70,6 @@ export async function POST(request: NextRequest) {
     }
 
     const errorText = await indexNowResponse.text();
-    console.error('IndexNow API error:', errorText);
 
     return NextResponse.json(
       {
@@ -81,7 +80,6 @@ export async function POST(request: NextRequest) {
       { status: indexNowResponse.status }
     );
   } catch (error) {
-    console.error('IndexNow submission error:', error);
     return NextResponse.json(
       { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
