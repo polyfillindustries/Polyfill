@@ -18,7 +18,7 @@ export default function Overview() {
             {/* --- IMAGE SECTION --- */}
             <div className="w-full lg:w-1/2 relative min-h-62.5 md:min-h-87.5 lg:min-h-162.5">
               <img
-                src="/ph2.jpg"
+                src="/extra/ph3.jpg"
                 alt="Shakti Polymers Manufacturing"
                 className="absolute inset-0 w-full h-full object-cover"
               />

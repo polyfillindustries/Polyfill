@@ -10,7 +10,7 @@ export const CONTACT_INFO = {
   phone: '+91 9810355151',
   email: 'polyfillindustries@gmail.com',
   address: 'C-57, Sector-4, Dsidc Bawana Ind. Area, Bawana, Delhi - 110039, India',
-  addressLink: '#',
+  addressLink: 'https://www.google.com/maps/search/?api=1&query=C-57,+Sector-4,+Dsidc+Bawana+Ind.+Area,+Bawana,+Delhi+-+110039,+India',
 };
 
 export const COMPANY_INFO = {
