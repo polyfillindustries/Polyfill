@@ -4,6 +4,8 @@ import ContactForm from "@/components/ContactForm";
 import Script from "next/script";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindia.com';
+
 export const metadata: Metadata = {
   title: "Contact Us - Get Quote for Polypropylene & BOPP Granules | Polyfill Industries",
   description:
@@ -21,10 +23,14 @@ export const metadata: Metadata = {
     "get quote",
     "polymer solutions delhi",
   ],
+  alternates: {
+    canonical: `${SITE_URL}/contact-us`,
+  },
   openGraph: {
     title: "Contact Polyfill Industries - Get a Quote",
     description:
       "Get in touch for bulk orders and pricing. Located in Bawana, Delhi, India. Expert polymer solutions.",
+    url: `${SITE_URL}/contact-us`,
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {

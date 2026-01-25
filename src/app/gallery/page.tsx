@@ -4,13 +4,19 @@ import GalleryClient from "../../components/GalleryClient";
 import type { ProcessedGalleryImage } from '@/types';
 import { getGalleryImages } from '@/sanity/lib/queries';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindia.com';
+
 export const metadata: Metadata = {
   title: 'Gallery - Manufacturing Facility & Production Process',
   description: 'View our state-of-the-art manufacturing facility, production processes, quality control procedures, and finished products. See how we manufacture premium polypropylene granules.',
   keywords: 'polypropylene manufacturing, PP production facility, BOPP recycling plant, polymer manufacturing process, plastic granules production, PP factory India, manufacturing facility Delhi',
+  alternates: {
+    canonical: `${SITE_URL}/gallery`,
+  },
   openGraph: {
     title: 'Manufacturing Gallery - Polyfill Industries',
     description: 'Explore our modern production facility and quality manufacturing processes.',
+    url: `${SITE_URL}/gallery`,
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {

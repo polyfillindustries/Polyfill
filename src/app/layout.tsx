@@ -50,9 +50,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindia.com';
+  
   return (
     <html lang="en" className="h-full">
       <head>
+        {/* Canonical URL - Prevents duplicate content from shaktipolymersdelhi.com */}
+        <link rel="canonical" href={siteUrl} />
+        
+        {/* Additional domain signals */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta property="og:url" content={siteUrl} />
+        
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"

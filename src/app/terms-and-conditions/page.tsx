@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import { FileText, AlertCircle, Package, Truck, IndianRupee, Shield, Scale, FileCheck } from 'lucide-react'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindia.com';
+
 export const metadata: Metadata = {
   title: 'Terms & Conditions - Polyfill Industries',
   description: 'Read our terms and conditions for using our website and purchasing our polypropylene products. Understand your rights and responsibilities.',
+  alternates: {
+    canonical: `${SITE_URL}/terms-and-conditions`,
+  },
   robots: {
     index: true,
     follow: true,
