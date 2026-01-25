@@ -4,3 +4,148 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# ===================================================================
+# SPECIFIC PAGE REDIRECTS (301) - Known old pages that have moved
+# These preserve SEO value by redirecting to the new locations
+# ===================================================================
+
+# Products pages (.html and .htm)
+[[redirects]]
+  from = "/product.html"
+  to = "/products"
+  status = 301
+
+[[redirects]]
+  from = "/product.htm"
+  to = "/products"
+  status = 301
+
+[[redirects]]
+  from = "/products.html"
+  to = "/products"
+  status = 301
+
+[[redirects]]
+  from = "/products.htm"
+  to = "/products"
+  status = 301
+
+# About Us pages (.html and .htm)
+[[redirects]]
+  from = "/about-us.html"
+  to = "/about-us"
+  status = 301
+
+[[redirects]]
+  from = "/about-us.htm"
+  to = "/about-us"
+  status = 301
+
+[[redirects]]
+  from = "/about.html"
+  to = "/about-us"
+  status = 301
+
+[[redirects]]
+  from = "/about.htm"
+  to = "/about-us"
+  status = 301
+
+# Contact Us pages (.html and .htm)
+[[redirects]]
+  from = "/contact-us.html"
+  to = "/contact-us"
+  status = 301
+
+[[redirects]]
+  from = "/contact-us.htm"
+  to = "/contact-us"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact-us"
+  status = 301
+
+[[redirects]]
+  from = "/contact.htm"
+  to = "/contact-us"
+  status = 301
+
+# Gallery pages (.html and .htm)
+[[redirects]]
+  from = "/gallery.html"
+  to = "/gallery"
+  status = 301
+
+[[redirects]]
+  from = "/gallery.htm"
+  to = "/gallery"
+  status = 301
+
+# Home/Index pages (.html and .htm)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/index.htm"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/home.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/home.htm"
+  to = "/"
+  status = 301
+
+# ===================================================================
+# CATCH-ALL FOR UNKNOWN .html AND .htm PAGES (410 Gone)
+# Tells search engines these pages are permanently gone
+# 410 is better than 404 for cleaning up old indexes
+# Pure 410 response without routing - fastest deindexing
+# ===================================================================
+
+[[redirects]]
+  from = "/*.html"
+  status = 410
+
+[[redirects]]
+  from = "/*.htm"
+  status = 410
+
+# ===================================================================
+# DOMAIN MIGRATION REDIRECTS (301)
+# Redirect old domain to new canonical domain
+# Note: Only works if shaktipolymersdelhi.com DNS points to Netlify
+# Keep these for future-proofing even if DNS not currently controlled
+# ===================================================================
+
+[[redirects]]
+  from = "https://shaktipolymersdelhi.com/*"
+  to = "https://shaktipolymersindia.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://shaktipolymersdelhi.com/*"
+  to = "https://shaktipolymersindia.com/:splat"
+  status = 301
+  force = true
+
+# Additional security and SEO headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+

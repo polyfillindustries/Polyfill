@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import { Shield, Mail, Phone, User, Lock, Eye } from 'lucide-react'
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindia.com';
+
 export const metadata: Metadata = {
   title: 'Privacy Policy - Polyfill Industries',
   description: 'Read our privacy policy to understand how we collect, use, and protect your personal information when you interact with Polyfill Industries.',
+  alternates: {
+    canonical: `${SITE_URL}/privacy-policy`,
+  },
   robots: {
     index: true,
     follow: true,
