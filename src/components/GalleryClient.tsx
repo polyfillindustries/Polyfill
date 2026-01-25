@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import {
   X,
@@ -26,23 +26,40 @@ export default function GalleryClient({
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleNext = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (selectedIndex !== null && selectedIndex < images.length - 1) {
-      setSelectedIndex(selectedIndex + 1);
+  // Lock scroll when lightbox is open
+  useEffect(() => {
+    if (selectedIndex !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
     }
-  }, [selectedIndex, images.length]);
-
-  const handlePrev = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (selectedIndex !== null && selectedIndex > 0) {
-      setSelectedIndex(selectedIndex - 1);
-    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
   }, [selectedIndex]);
+
+  const handleNext = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (selectedIndex !== null && selectedIndex < images.length - 1) {
+        setSelectedIndex(selectedIndex + 1);
+      }
+    },
+    [selectedIndex, images.length]
+  );
+
+  const handlePrev = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (selectedIndex !== null && selectedIndex > 0) {
+        setSelectedIndex(selectedIndex - 1);
+      }
+    },
+    [selectedIndex]
+  );
 
   return (
     <div className="w-full bg-black min-h-screen">
-      {/* TOGGLE BUTTON */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className="fixed bottom-24.5 md:bottom-24.5 left-3.5 md:right-7 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl border border-slate-100 hover:bg-slate-50 transition-all active:scale-95"
@@ -55,7 +72,6 @@ export default function GalleryClient({
       </button>
 
       <div className="relative flex px-3 md:px-6 lg:px-8 py-8">
-        {/* MAIN COLUMN */}
         <div className="flex-1 flex flex-col items-center gap-16 md:gap-24">
           {images.map((image, index) => (
             <motion.div
@@ -68,7 +84,6 @@ export default function GalleryClient({
               className="w-full max-w-4xl cursor-pointer"
               onClick={() => setSelectedIndex(index)}
             >
-              {/* IMAGE + DESKTOP OVERLAY */}
               <div className="w-full">
                 <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl border border-white/5 bg-white/5 transition-all duration-700 group hover:border-white/20 hover:shadow-[0_0_50px_-12px_rgba(59,130,246,0.3)]">
                   <Image
@@ -80,8 +95,6 @@ export default function GalleryClient({
                     loading={index < 2 ? "eager" : "lazy"}
                     priority={index < 2}
                   />
-
-                  {/* DESKTOP OVERLAY ONLY */}
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 hidden md:flex hover:opacity-100 transition-opacity duration-500 flex-col justify-end p-8">
                     <motion.div
                       initial={{ y: 20, opacity: 0 }}
@@ -106,13 +119,9 @@ export default function GalleryClient({
                       )}
                     </motion.div>
                   </div>
-
-                  {/* CORNERS */}
                   <div className="absolute top-4 right-4 h-8 w-8 border-t border-r border-white/20" />
                   <div className="absolute bottom-4 left-4 h-8 w-8 border-b border-l border-white/20" />
                 </div>
-
-                {/* MOBILE TITLE + DATE */}
                 <div className="mt-4 px-1 md:hidden">
                   {image.title && (
                     <h3 className="text-white text-lg font-medium tracking-tight">
@@ -128,8 +137,6 @@ export default function GalleryClient({
                       })}
                     </p>
                   )}
-
-                  {/* <div className='text-white'/> */}
                 </div>
                 <hr className="border-zinc-800 md:hidden border-t-2 my-2 mb-3" />
               </div>
@@ -137,7 +144,6 @@ export default function GalleryClient({
           ))}
         </div>
 
-        {/* SIDEBAR */}
         <AnimatePresence>
           {isSidebarOpen && (
             <motion.div
@@ -153,7 +159,7 @@ export default function GalleryClient({
                     key={image._id}
                     className={cn(
                       "relative aspect-3/4 rounded-xl md:rounded-2xl overflow-hidden cursor-pointer",
-                      "opacity-60 hover:opacity-100 transition-all duration-300 shadow-sm hover:shadow-md shrink-0",
+                      "opacity-60 hover:opacity-100 transition-all duration-300 shadow-sm hover:shadow-md shrink-0"
                     )}
                     onClick={() =>
                       document
@@ -180,23 +186,25 @@ export default function GalleryClient({
         </AnimatePresence>
       </div>
 
-      {/* LIGHTBOX (UNCHANGED) */}
       <AnimatePresence>
         {selectedIndex !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-100 flex items-center justify-center bg-black/95"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 cursor-zoom-out"
             onClick={() => setSelectedIndex(null)}
           >
-            <button className="absolute right-10 top-10 p-4 bg-white/5 rounded-full">
+            <button 
+              className="absolute right-5 top-10 p-4 bg-white/5 rounded-full z-110"
+              onClick={() => setSelectedIndex(null)}
+            >
               <X className="h-6 w-6 text-white" />
             </button>
 
             <motion.div
               className="relative h-[70vh] w-[80vw] max-w-6xl"
-              onClick={(e) => e.stopPropagation()}
+              // Removed stopPropagation so clicking the image area also closes the modal
             >
               <Image
                 src={images[selectedIndex].fullUrl}
@@ -210,7 +218,7 @@ export default function GalleryClient({
                 </h4>
                 <p className="text-blue-400 font-mono text-xs mt-1">
                   {images[selectedIndex].date}
-                </p>{" "}
+                </p>
               </div>
             </motion.div>
 
@@ -218,14 +226,14 @@ export default function GalleryClient({
               <button
                 onClick={handlePrev}
                 disabled={selectedIndex === 0}
-                className="p-6 bg-white/5 rounded-full disabled:opacity-0"
+                className="p-6 bg-white/5 rounded-full disabled:opacity-0 z-110 cursor-pointer"
               >
                 <ChevronLeft className="h-8 w-8 text-white" />
               </button>
               <button
                 onClick={handleNext}
                 disabled={selectedIndex === images.length - 1}
-                className="p-6 bg-white/5 rounded-full disabled:opacity-0"
+                className="p-6 bg-white/5 rounded-full disabled:opacity-0 z-110 cursor-pointer"
               >
                 <ChevronRight className="h-8 w-8 text-white" />
               </button>

@@ -153,13 +153,13 @@ export const Navbar = () => {
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <button
-                className="md:hidden p-2 rounded-lg hover:bg-bprimary/10 transition-colors"
+                className="md:hidden p-2 rounded-lg  hover:bg-bprimary/10 transition-colors"
                 aria-label="Toggle menu"
               >
                 <Menu size={24} className="text-bgray" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-75 sm:w-100 bg-zinc-50 flex flex-col">
+            <SheetContent side="right" className="w-75 sm:w-100 bg-zinc-50 flex flex-col z-999">
               <SheetHeader>
                 <SheetTitle className="flex justify-left">
                   <Image 

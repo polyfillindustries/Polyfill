@@ -145,7 +145,7 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
           </svg>
         </button>
       </SheetTrigger>
-      <SheetContent side="right" className="w-full p-4 md:px-8 ">
+      <SheetContent side="right" className="w-full p-4 z-300 md:px-8 ">
         <SheetHeader>
           <SheetTitle className="text-2xl font-bold text-zinc-900">
             Product Enquiry
