@@ -1,5 +1,3 @@
-import { ta } from "zod/v4/locales";
-
 export const NAV_LINKS = [
   { name: 'Home', href: '/' },
   { name: 'Products', href: '/products' },
@@ -11,8 +9,8 @@ export const NAV_LINKS = [
 export const CONTACT_INFO = {
   phone: '+91 9810355151',
   email: 'polyfillindustries@gmail.com',
-  address: 'C-57, Sector-4, Dsidc Bawana Ind. Area, Bawana, Delhi - 110039, India',
-  addressLink: 'https://www.google.com/maps/search/?api=1&query=C-57,+Sector-4,+Dsidc+Bawana+Ind.+Area,+Bawana,+Delhi+-+110039,+India',
+  address: 'C-56-57, Sector-4, DSIIDC Bawana Industrial Area, Delhi - 110039, India',
+  addressLink: process.env.NEXT_PUBLIC_GOOGLE_MAPS_LINK || 'https://maps.app.goo.gl/hToQG4cqx76AJQB76',
 };
 
 export const COMPANY_INFO = {

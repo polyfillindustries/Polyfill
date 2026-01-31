@@ -18,16 +18,16 @@ export default function Home() {
         overlayOpacity={0.6}
         className="min-h-[80vh]"
       >
-        <div className="flex flex-col font-inter text-white font-medium gap-y-4 items-center justify-center h-full">
-          <h2 className="font-semibold text-sm md:text-lg font-serif ">
-            A SHAKTI POLYMERS UNIT
+        <div className="flex flex-col font-inter text-white font-medium gap-y-4 items-center justify-center h-full px-4">
+          <h2 className="font-semibold text-lg md:text-2xl font-serif tracking-in-expand">
+            Engineered
           </h2>
-          <h1 className="text-white  text-center font-bold  text-2xl md:text-5xl">
-            <span className="text-bprimary">POLYFILL</span>
+          <h1 className="text-white text-center font-bold text-3xl sm:text-4xl md:text-6xl tracking-tight">
+            {/* <span className="text-[rgb(218,3,38)]">POLYPROPYLENE</span> */}
+            <span className="text-red-700">POLYPROPYLENE</span>
           </h1>
-          <h2 className="text-center md:text-xl text-sm font-bold">
-            Engineered <span className="text-bprimary">POLYPROPYLENE</span> for
-            Everyday Excellence{" "}
+          <h2 className="text-center text-base md:text-xl font-bold text-gray-100">
+             for Everyday Excellence
           </h2>
         </div>
       </Hero2>

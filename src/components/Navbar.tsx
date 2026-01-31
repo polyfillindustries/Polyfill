@@ -1,71 +1,79 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { NAV_LINKS, CONTACT_INFO } from '@/lib/constants';
-import { Menu, Phone, Mail } from 'lucide-react';
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants";
+import { Menu, Phone, Mail } from "lucide-react";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet';
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/components/ui/sheet";
 
 export const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter();
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const router = useRouter();
 
-  // Prefetch important routes on idle (works on mobile + desktop)
-  useEffect(() => {
-    const prefetchRoutes = () => {
-      // Prefetch all navigation routes for instant page transitions
-      router.prefetch('/products');
-      router.prefetch('/about-us');
-      router.prefetch('/gallery');
-      router.prefetch('/contact-us');
-    };
+	// Prefetch important routes on idle (works on mobile + desktop)
+	useEffect(() => {
+		const prefetchRoutes = () => {
+			// Prefetch all navigation routes for instant page transitions
+			router.prefetch("/products");
+			router.prefetch("/about-us");
+			router.prefetch("/gallery");
+			router.prefetch("/contact-us");
+		};
 
-    // Use requestIdleCallback for better performance (runs when browser is idle)
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(prefetchRoutes);
-    } else {
-      // Fallback for browsers that don't support requestIdleCallback
-      setTimeout(prefetchRoutes, 2000);
-    }
-  }, [router]);
+		// Use requestIdleCallback for better performance (runs when browser is idle)
+		if ("requestIdleCallback" in window) {
+			requestIdleCallback(prefetchRoutes);
+		} else {
+			// Fallback for browsers that don't support requestIdleCallback
+			setTimeout(prefetchRoutes, 2000);
+		}
+	}, [router]);
 
-  // Close mobile menu when screen size increases to desktop
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768 && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-    };
+	// Close mobile menu when screen size increases to desktop
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth >= 768 && isMenuOpen) {
+				setIsMenuOpen(false);
+			}
+		};
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMenuOpen]);
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, [isMenuOpen]);
 
-  return (
-    <nav className="sticky top-0 z-50 bg-zinc-50 border-b-2 border-bprimary shadow-sm">
-
-      {/* Top Bar - Hidden on mobile */}
-      <div className="hidden md:block bg-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center items-center gap-8 py-2 text-sm font-inter">
-            <a href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-baccent transition-colors">
-              <Phone size={16} />
-              {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
-            </a>
-            <span className="text-baccent">|</span>
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              <Link target='_blank' href={process.env.NEXT_PUBLIC_CATALOG_URL || '#'} className='hover:text-baccent'>Product Catalog</Link>
-              {/* {SOCIAL_LINKS.map((social) => (
+	return (
+		<nav className="sticky top-0 z-50 bg-zinc-50 border-b-2 border-bprimary shadow-sm">
+			{/* Top Bar - Hidden on mobile */}
+			<div className="hidden md:block bg-black text-white">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<div className="flex justify-center items-center gap-8 py-2 text-sm font-inter">
+						<a
+							href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+							className="flex items-center gap-2 hover:text-baccent transition-colors">
+							<Phone size={16} />
+							{process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
+						</a>
+						<span className="text-baccent">|</span>
+						{/* Social Icons */}
+						<div className="flex items-center gap-3">
+							<Link
+								target="_blank"
+								href={
+									process.env.NEXT_PUBLIC_CATALOG_URL || "#"
+								}
+								className="hover:text-baccent">
+								Product Catalog
+							</Link>
+							{/* {SOCIAL_LINKS.map((social) => (
                 <a 
                   key={social.name}
                   href={social.href} 
@@ -96,120 +104,126 @@ export const Navbar = () => {
                   )}
                 </a> 
               ))}*/}
-            </div>
-            <span className="text-baccent">|</span>
-            <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`} className="flex items-center gap-2 hover:text-baccent transition-colors">
-              <Mail size={16} />
-              {process.env.NEXT_PUBLIC_EMAIL}
-            </a>
-          </div>
-        </div>
-      </div>
+						</div>
+						<span className="text-baccent">|</span>
+						<a
+							href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
+							className="flex items-center gap-2 hover:text-baccent transition-colors">
+							<Mail size={16} />
+							{process.env.NEXT_PUBLIC_EMAIL}
+						</a>
+					</div>
+				</div>
+			</div>
 
-      {/* Main Navigation */}
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-         
-                <Link href="/" className="shrink-0">
-                 <div className='flex '>
-            <Image 
-              src="/logo.png" 
-              alt="Polyfill Logo" 
-              width={120} 
-              height={48}
-              className="h-8 w-auto sm:h-10 md:h-12"
-              priority
-            />
-             <div className="mx-3 w-px self-stretch bg-bgray" />
-             <Image 
-              src="/sp2.png" 
-              alt="Polyfill Logo" 
-              width={150} 
-              height={68}
-              className="h-10 w-auto sm:h-10 md:h-13"
-              priority
-            />
-             </div>
-          </Link>
-         
-          
+			{/* Main Navigation */}
+			<div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 ">
+				<div className="flex justify-between items-center py-4">
+					{/* Logo */}
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                prefetch={true}
-                className="font-inter text-bgray hover:text-bprimary transition-colors duration-200 font-medium text-lg"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
+					<Link href="/" className="shrink-0">
+						<div className="flex items-center">
+							<Image
+								src="/logo.png"
+								alt="Polyfill Logo"
+								width={120}
+								height={48}
+								className="h-8 w-auto sm:h-10 md:h-12"
+								style={{ width: 'auto' }}
+								priority
+							/>
+							<div className="mx-3 w-px bg-bgray h-8 sm:h-10 md:h-12" />
+							<Image
+								src="/sp2.png"
+								alt="Shakti Polymers Logo"
+								width={165}
+								height={68}
+								className="h-12 w-auto sm:h-14 md:h-15"
+								style={{ width: 'auto' }}
+								priority
+							/>
+						</div>
+					</Link>
 
-          {/* Mobile Menu Button */}
-          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-            <SheetTrigger asChild>
-              <button
-                className="md:hidden p-2 rounded-lg  hover:bg-bprimary/10 transition-colors"
-                aria-label="Toggle menu"
-              >
-                <Menu size={24} className="text-bgray" />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-75 sm:w-100 bg-zinc-50 flex flex-col z-999">
-              <SheetHeader>
-                <SheetTitle className="flex justify-left">
-                  <Image 
-                    src="/logo.png" 
-                    alt="Polyfill Logo" 
-                    width={80} 
-                    height={40}
-                    className="h-10 w-auto"
-                  />
-                </SheetTitle>
-                <SheetDescription className="sr-only">
-                  Navigation menu
-                </SheetDescription>
-              </SheetHeader>
-              <hr className="border-b border-bprimary/10 "/>
-              <div className="mt-2 space-y-4 flex-1">
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    prefetch={true}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block font-inter text-bgray hover:text-bprimary transition-colors duration-200 font-medium text-lg py-3 px-4 rounded-lg hover:bg-bprimary/5"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-                
-              {/* Mobile Contact Info - Fixed at Bottom */}
-              <div className="border-t border-bprimary/20 pt-4 space-y-3 pb-6">
-                <a 
-                  href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`} 
-                  className="flex items-center gap-3 text-bgray hover:text-bprimary transition-colors py-2 px-4"
-                >
-                  <Phone size={20} />
-                  <span className="font-inter text-sm">{process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}</span>
-                </a>
-                <a 
-                  href={`mailto:${CONTACT_INFO.email}`} 
-                  className="flex items-center gap-3 text-bgray hover:text-bprimary transition-colors py-2 px-4"
-                >
-                  <Mail size={20} />
-                  <span className="font-inter text-sm">{CONTACT_INFO.email}</span>
-                </a>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </div>
-    </nav>
-  );
+					{/* Desktop Navigation */}
+					<div className="hidden md:flex items-center space-x-8">
+						{NAV_LINKS.map((link) => (
+							<Link
+								key={link.name}
+								href={link.href}
+								prefetch={true}
+								className="font-inter text-bgray hover:text-bprimary transition-colors duration-200 font-medium text-lg">
+								{link.name}
+							</Link>
+						))}
+					</div>
+
+					{/* Mobile Menu Button */}
+					<Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+						<SheetTrigger asChild>
+							<button
+								className="md:hidden p-2 rounded-lg  hover:bg-bprimary/10 transition-colors"
+								aria-label="Toggle menu">
+								<Menu size={24} className="text-bgray" />
+							</button>
+						</SheetTrigger>
+						<SheetContent
+							side="right"
+							className="w-75 sm:w-100 bg-zinc-50 flex flex-col z-999">
+							<SheetHeader>
+								<SheetTitle className="flex justify-left">
+									<Image
+										src="/logo.png"
+										alt="Polyfill Logo"
+										width={80}
+										height={40}
+										className="h-10 w-auto"
+									/>
+								</SheetTitle>
+								<SheetDescription className="sr-only">
+									Navigation menu
+								</SheetDescription>
+							</SheetHeader>
+							<hr className="border-b border-bprimary/10 " />
+							<div className="mt-2 space-y-4 flex-1">
+								{NAV_LINKS.map((link) => (
+									<Link
+										key={link.name}
+										href={link.href}
+										prefetch={true}
+										onClick={() => setIsMenuOpen(false)}
+										className="block font-inter text-bgray hover:text-bprimary transition-colors duration-200 font-medium text-lg py-3 px-4 rounded-lg hover:bg-bprimary/5">
+										{link.name}
+									</Link>
+								))}
+							</div>
+
+							{/* Mobile Contact Info - Fixed at Bottom */}
+							<div className="border-t border-bprimary/20 pt-4 space-y-3 pb-6">
+								<a
+									href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+									className="flex items-center gap-3 text-bgray hover:text-bprimary transition-colors py-2 px-4">
+									<Phone size={20} />
+									<span className="font-inter text-sm">
+										{
+											process.env
+												.NEXT_PUBLIC_WHATSAPP_NUMBER
+										}
+									</span>
+								</a>
+								<a
+									href={`mailto:${CONTACT_INFO.email}`}
+									className="flex items-center gap-3 text-bgray hover:text-bprimary transition-colors py-2 px-4">
+									<Mail size={20} />
+									<span className="font-inter text-sm">
+										{CONTACT_INFO.email}
+									</span>
+								</a>
+							</div>
+						</SheetContent>
+					</Sheet>
+				</div>
+			</div>
+		</nav>
+	);
 };

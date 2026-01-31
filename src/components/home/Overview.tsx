@@ -56,7 +56,7 @@ export default function Overview() {
 
                 <div className="space-y-4 text-center p-1 md:space-y-6 text-zinc-300 text-md md:text-base lg:text-lg leading-relaxed">
                   <p>
-                    Polyfill (formerly Shakti Polymers), established in{" "}
+                    Shakti Polymers, established in{" "}
                     <span className="text-white font-bold tracking-tight">
                       1988
                     </span>

@@ -62,7 +62,7 @@ export const Hero2 = ({
       </motion.div>
       
       <div 
-        className="absolute top-0 left-0 w-full h-full bg-black z-[1]"
+        className="absolute top-0 left-0 w-full h-full bg-black z-1"
         style={{ opacity: overlayOpacity }}
       />
 
@@ -74,7 +74,7 @@ export const Hero2 = ({
           ease: [0.43, 0.13, 0.23, 0.96],
           delay: 0.5 
         }}
-        className="absolute inset-0 bg-black z-[2] pointer-events-none"
+        className="absolute inset-0 bg-black z-2 pointer-events-none"
       />
       
       <motion.div 
