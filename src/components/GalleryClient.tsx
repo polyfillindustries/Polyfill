@@ -8,6 +8,7 @@ import {
   ChevronRight,
   PanelRightClose,
   PanelRightOpen,
+  ImageOff,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
@@ -73,6 +74,15 @@ export default function GalleryClient({
 
       <div className="relative flex px-3 md:px-6 lg:px-8 py-8">
         <div className="flex-1 flex flex-col items-center gap-16 md:gap-24">
+          {images.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-32 text-center animate-in fade-in duration-700">
+               <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-6">
+                 <ImageOff className="w-8 h-8 text-white/40" />
+               </div>
+               <h3 className="text-white text-xl md:text-2xl font-light tracking-wide mb-2">No Images Yet</h3>
+               <p className="text-white/40 max-w-md">We are currently updating our gallery. Please check back later for some striking visuals.</p>
+            </div>
+          )}
           {images.map((image, index) => (
             <motion.div
               key={image._id}

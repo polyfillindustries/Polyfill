@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Geist, Geist_Mono, Playfair_Display, DM_Serif_Text } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import { Toaster } from "@/components/ui/sonner";
-import FloatingWhatsapp from "@/components/FloatingWhatsapp";
 import { ClientProviders } from "@/components/ClientProviders";
+import SiteChrome from "@/components/SiteChrome";
 import { baseMetadata } from "@/lib/metadata";
 import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/structuredData";
 
@@ -78,13 +75,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} ${dmSerif.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <ClientProviders>
-          <FloatingWhatsapp/>
-          <Navbar/>
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer/>
-          <Toaster richColors position="bottom-right" />
+          <SiteChrome>{children}</SiteChrome>
         </ClientProviders>
       </body>
     </html>
