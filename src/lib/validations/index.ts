@@ -27,7 +27,6 @@ export const quoteFormSchema = z.object({
   phone: z.string().min(1, "Phone number is required").trim(),
   productName: z.string().min(1, "Product name is required").trim(),
   quantity: z.string().optional(),
-  quantityUnit: z.string().optional(),
   captchaToken: z.string().optional(),
 });
 

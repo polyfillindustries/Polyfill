@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const { name, email, phone, productName, quantity, quantityUnit, captchaToken } = validationResult.data;
+    const { name, email, phone, productName, quantity,  captchaToken } = validationResult.data;
 
     // Verify captcha
     if (captchaToken) {
@@ -48,7 +48,6 @@ export async function POST(req: NextRequest) {
       phone,
       productName,
       quantity,
-      quantityUnit,
     });
 
     // Send email via Resend
