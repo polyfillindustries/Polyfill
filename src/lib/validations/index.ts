@@ -26,8 +26,7 @@ export const quoteFormSchema = z.object({
   email: z.email({ message: "Please enter a valid email address" }),
   phone: z.string().min(1, "Phone number is required").trim(),
   productName: z.string().min(1, "Product name is required").trim(),
-  quantity: z.number().positive("Quantity must be greater than 0").optional(),
-  quantityUnit: z.string().optional(),
+  quantity: z.string().optional(),
   captchaToken: z.string().optional(),
 });
 

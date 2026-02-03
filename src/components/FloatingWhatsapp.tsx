@@ -15,7 +15,7 @@ const FloatingWhatsapp = () => {
   } = useSequentialMorphAnimation();
 
   return (
-    <div className="fixed bottom-24 lg:bottom-24 md:right-5 right-2 z-250 flex flex-col items-end space-y-3">
+    <div className="fixed bottom-8 lg:bottom-8 md:right-5 right-2 z-250 flex flex-col items-end space-y-3">
       {/* Phone button with morphing animation */}
       <PhoneButton
         showTooltip={showPhoneTooltip}

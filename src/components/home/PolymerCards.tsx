@@ -8,24 +8,26 @@ import { HoverBorderGradient } from "../ui/hover-border-gradient";
 
 const items = [
   { 
-    img: "img1.jpg", 
+    img: "pp.jpeg", 
+    title: "Polypropylene (PP)", 
+    href: "/products/polypropylene-pp" 
+  },
+  
+  
+  { 
+    img: "img3.jpg", 
+    title: "Fillers (FIELD)", 
+    href: "/products/fillers-field" 
+  },
+  { 
+    img: "ep2.jpeg", 
     title: "Engineering Polymers", 
     href: "/products/engineering-polymers" 
   },
   { 
-    img: "img2.jpg", 
-    title: "Polypropylene (PP)", 
-    href: "/products/polypropylene" 
-  },
-  { 
-    img: "img3.jpg", 
-    title: "Polypropylene Copolymer (PPCP)", 
-    href: "/products/polypropylene-copolymer" 
-  },
-  { 
-    img: "img4.jpg", 
-    title: "High Density (HD)", 
-    href: "/products/high-density" 
+    img: "hdp2.jpeg", 
+    title: "High Density Polymer (HD)", 
+    href: "/products/hd-polymers" 
   },
 ];
 

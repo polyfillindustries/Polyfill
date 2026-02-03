@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 // Base configuration
-const SITE_NAME = 'Polyfill Industries';
+const SITE_NAME = 'Shakti Polymers India';
 const SITE_DESCRIPTION = 'Established in 1988, Shakti Polymers is a trusted manufacturer and supplier of plastic granules including BOPP Natural Gole Dana, Fresh PP, and Recycled PP Granules. With four production units and monthly capacity of 1,200 tons, we serve clients across India with consistent quality, timely delivery, and sustainable polymer recycling solutions.';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindia.com';
 

@@ -34,7 +34,6 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
     email: '',
     phone: '',
     quantity: '',
-    quantityUnit: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -62,8 +61,7 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
         email: formData.email,
         phone: formData.phone,
         productName: productName,
-        quantity: formData.quantity ? Number(formData.quantity) : undefined,
-        quantityUnit: formData.quantityUnit || undefined,
+        quantity: formData.quantity || undefined,
         captchaToken,
       };
 
@@ -84,7 +82,7 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
       }
 
       // Success - reset form and close sheet
-      setFormData({ name: '', email: '', phone: '', quantity: '', quantityUnit: '' });
+      setFormData({ name: '', email: '', phone: '', quantity: '' });
       setIsOpen(false);
       
       // Show success message
@@ -180,13 +178,12 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
           {/* Email Field */}
           <div className="space-y-2">
             <Label htmlFor="email" className="text-zinc-700 font-semibold">
-              Email Address <span className="text-red-500">*</span>
+              Email Address 
             </Label>
             <Input
               id="email"
               name="email"
               type="email"
-              required
               value={formData.email}
               onChange={handleChange}
               placeholder="abc@example.com"
@@ -219,47 +216,24 @@ export const ProductEnquirySheet = ({ productName }: ProductEnquirySheetProps) =
             )}
           </div>
 
-          {/* Quantity and Unit Fields */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="quantity" className="text-zinc-700 font-semibold">
-                Quantity
-              </Label>
-              <Input
-                id="quantity"
-                name="quantity"
-                type="number"
-                min="1"
-                step="any"
-                value={formData.quantity}
-                onChange={handleChange}
-                placeholder="e.g., 100"
-                className="w-full"
-                disabled={isSubmitting}
-              />
-              {errors.quantity && (
-                <p className="text-sm text-red-500">{errors.quantity}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="quantityUnit" className="text-zinc-700 font-semibold">
-                Unit
-              </Label>
-              <Input
-                id="quantityUnit"
-                name="quantityUnit"
-                type="text"
-                value={formData.quantityUnit}
-                onChange={handleChange}
-                placeholder="e.g., kg, tons"
-                className="w-full"
-                disabled={isSubmitting}
-              />
-              {errors.quantityUnit && (
-                <p className="text-sm text-red-500">{errors.quantityUnit}</p>
-              )}
-            </div>
+          {/* Quantity Field */}
+          <div className="space-y-2">
+            <Label htmlFor="quantity" className="text-zinc-700 font-semibold">
+              Quantity
+            </Label>
+            <Input
+              id="quantity"
+              name="quantity"
+              type="text"
+              value={formData.quantity}
+              onChange={handleChange}
+              placeholder="e.g., 100 kg, 50 tons"
+              className="w-full"
+              disabled={isSubmitting}
+            />
+            {errors.quantity && (
+              <p className="text-sm text-red-500">{errors.quantity}</p>
+            )}
           </div>
 
           {/* Product Info Display */}
