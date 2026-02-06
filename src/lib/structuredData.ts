@@ -27,7 +27,7 @@ export const organizationSchema = {
     areaServed: 'IN',
     availableLanguage: ['English', 'Hindi'],
   },
-  email: 'polyfillindustries@gmail.com',
+  email: 'shaktipolymer@gmail.com',
   sameAs: [
     // Add your social media profiles here when available
     // 'https://www.facebook.com/polyfillindustries',
@@ -97,7 +97,7 @@ export const localBusinessSchema = {
   '@id': SITE_URL,
   url: SITE_URL,
   telephone: '+91-9810355151',
-  email: 'polyfillindustries@gmail.com',
+  email: 'shaktipolymer@gmail.com',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'C-57, Sector-4, Dsidc Bawana Ind. Area',
