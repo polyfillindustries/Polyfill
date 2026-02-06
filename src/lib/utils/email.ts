@@ -106,11 +106,9 @@ export function createDesignReferenceSection(
 export function createProductDetailsSection({
   productName,
   quantity,
-  quantityUnit,
 }: {
   productName: string;
-  quantity?: number;
-  quantityUnit?: string;
+  quantity?: string;
 }): string {
   return `
     <div style="background: #ffffff; padding: 25px; border-radius: 12px; border: 2px solid #e9ecef; margin-bottom: 25px;">
@@ -120,10 +118,10 @@ export function createProductDetailsSection({
           <span style="${EMAIL_STYLES.label}">📦 Product:</span>
           <span style="${EMAIL_STYLES.value}">${productName}</span>
         </div>
-        ${quantity && quantityUnit ? `
+        ${quantity ? `
         <div style="${EMAIL_STYLES.infoRow}; border-bottom: none;">
           <span style="${EMAIL_STYLES.label}">📊 Quantity:</span>
-          <span style="${EMAIL_STYLES.value}">${quantity} ${quantityUnit}</span>
+          <span style="${EMAIL_STYLES.value}">${quantity}</span>
         </div>
         ` : ''}
       </div>

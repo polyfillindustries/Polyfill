@@ -18,16 +18,14 @@ export function generateQuoteEmail({
   phone,
   productName,
   quantity,
-  quantityUnit,
 }: {
   name: string;
   email: string;
   phone: string;
   productName: string;
-  quantity?: number;
-  quantityUnit?: string;
+  quantity?: string;
 }) {
-  const quantityDisplay = quantity && quantityUnit ? `${quantity} ${quantityUnit}` : 'Not specified';
+  const quantityDisplay = quantity || 'Not specified';
   
   const html = `
     <div style="${EMAIL_STYLES.container}">
@@ -36,7 +34,7 @@ export function generateQuoteEmail({
       <div style="padding: 30px 20px;">
         ${createCustomerInfoSection({ name, email, phone })}
 
-        ${createProductDetailsSection({ productName, quantity, quantityUnit })}
+        ${createProductDetailsSection({ productName, quantity })}
 
         ${createEmailFooter()}
       </div>
