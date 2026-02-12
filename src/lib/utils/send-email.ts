@@ -14,7 +14,7 @@ export const EMAIL_CONFIG = {
     contact: process.env.NOREPLY_EMAIL || 'Polyfill Industries <onboarding@resend.dev>',
     quote: process.env.NOREPLY_EMAIL || 'Polyfill Industries <onboarding@resend.dev>',
   },
-  to: process.env.BUSINESS_EMAIL || 'polyfillindustries@gmail.com',
+  to: process.env.BUSINESS_EMAIL || 'shaktipolymer@gmail.com',
 } as const;
 
 /**

@@ -9,7 +9,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://shaktipolymersindi
 export const metadata: Metadata = {
   title: "Contact Us - Get Quote for Polypropylene & BOPP Granules | Polyfill Industries",
   description:
-    "Contact Polyfill Industries for bulk orders, pricing, and product inquiries. Located in Bawana Industrial Area, Delhi. Call +91 9810355151 or email polyfillindustries@gmail.com",
+    "Contact Polyfill Industries for bulk orders, pricing, and product inquiries. Located in Bawana Industrial Area, Delhi. Call +91 9810355151 or email shaktipolymer@gmail.com",
   keywords: [
     "contact PP manufacturer",
     "PP supplier contact",
