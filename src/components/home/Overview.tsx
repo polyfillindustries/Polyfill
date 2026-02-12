@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { TypewriterEffectSmooth } from "../ui/typewriter-effect";
+import GalleryVideoPlayer from "../GalleryVideoPlayer";
 
 export default function Overview() {
   const words = [
@@ -17,11 +18,12 @@ export default function Overview() {
           <div className="flex flex-col lg:flex-row">
             {/* --- IMAGE SECTION --- */}
             <div className="w-full lg:w-1/2 relative min-h-62.5 md:min-h-87.5 lg:min-h-162.5">
-              <img
+              {/* <img
                 src="/extra/ph3.jpg"
                 alt="Shakti Polymers Manufacturing"
                 className="absolute inset-0 w-full h-full object-cover"
-              />
+              /> */}
+               <GalleryVideoPlayer />
               <div className="absolute inset-0 bg-linear-to-r from-zinc-900/40 via-transparent to-transparent lg:hidden" />
               <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-zinc-900/90" />
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { urlFor } from "@/sanity/lib/image";
 import GalleryClient from "../../components/GalleryClient";
+import GalleryVideoPlayer from "../../components/GalleryVideoPlayer";
 import type { ProcessedGalleryImage } from '@/types';
 import { getGalleryImages } from '@/sanity/lib/queries';
 
@@ -44,6 +45,7 @@ export default async function GalleryPage() {
 
   return (
     <div className="bg-black min-h-screen p-3">
+     
       <div className="md:px-12 py-2 md:pt-10 mb-5">
         <span className="text-blue-500 font-mono font-medium text-[15px] tracking-[0.5em] uppercase block mb-4">
           Material Archives
